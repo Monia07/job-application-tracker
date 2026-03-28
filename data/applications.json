@@ -1,3 +1,17 @@
 {
-  "applications": []
+    "applications": [
+        {
+            "id": 1,
+            "company_name": "Spotify",
+            "job_title": "Backend Developer",
+            "status": "applied",
+            "date_applied": "",
+            "deadline": "",
+            "contact_name": "",
+            "contact_email": "",
+            "follow_up_date": "",
+            "job_link": "",
+            "notes": ""
+        }
+    ]
 }

@@ -1,4 +1,5 @@
-from storage import load_applications
+from application import JobApplication
+from storage import load_applications, save_applications
 
 
 def display_menu():
@@ -22,9 +23,33 @@ def main():
         display_menu()
         choice = input("Enter your choice: ").strip()
 
-        if choice == "0":
+        if choice == "2":
+            company = input("Company name: ")
+            title = input("Job title: ")
+
+            new_app = JobApplication(
+                id=len(applications) + 1,
+                company_name=company,
+                job_title=title,
+                status="applied",
+                date_applied="",
+                deadline="",
+                contact_name="",
+                contact_email="",
+                follow_up_date="",
+                job_link="",
+                notes=""
+            )
+
+            applications.append(new_app)
+            save_applications(applications)
+
+            print("Application added!")
+
+        elif choice == "0":
             print("\nThank you for using Job Application Tracker!")
             break
+
         else:
             print("Feature not implemented yet.")
 
