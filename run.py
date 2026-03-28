@@ -23,7 +23,19 @@ def main():
         display_menu()
         choice = input("Enter your choice: ").strip()
 
-        if choice == "2":
+        if choice == "1":
+            if not applications:
+                print("No applications found.")
+            else:
+                for application in applications:
+                    print("\n------------------------------")
+                    print(f"ID: {application.id}")
+                    print(f"Company: {application.company_name}")
+                    print(f"Job Title: {application.job_title}")
+                    print(f"Status: {application.status}")
+                    print(f"Date Applied: {application.date_applied}")
+                    print()
+        elif choice == "2":
             company = input("Company name: ")
             title = input("Job title: ")
 
