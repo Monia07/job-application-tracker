@@ -37,6 +37,26 @@ class JobApplication:
             "contact_email": self.contact_email,
             "follow_up_date": self.follow_up_date,
             "job_link": self.job_link,
-            "notes": self.notes,
+            "notes": self.notes
         }
+    
+
+    @staticmethod
+    def from_dict(data):
+        return JobApplication(
+            id=data.get("id"),
+            company_name=data.get("company_name"),
+            job_title=data.get("job_title"),
+            status=data.get("status"),
+            date_applied=data.get("date_applied"),
+            deadline=data.get("deadline"),
+            contact_name=data.get("contact_name"),
+            contact_email=data.get("contact_email"),
+            follow_up_date=data.get("follow_up_date"),
+            job_link=data.get("job_link"),
+            notes=data.get("notes"),
+        )
+
+    
+
         
