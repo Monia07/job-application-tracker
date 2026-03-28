@@ -24,4 +24,19 @@ class JobApplication:
         self.follow_up_date = follow_up_date
         self.job_link = job_link
         self.notes = notes
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "company_name": self.company_name,
+            "job_title": self.job_title,
+            "status": self.status,
+            "date_applied": self.date_applied,
+            "deadline": self.deadline,
+            "contact_name": self.contact_name,
+            "contact_email": self.contact_email,
+            "follow_up_date": self.follow_up_date,
+            "job_link": self.job_link,
+            "notes": self.notes,
+        }
         
