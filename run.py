@@ -182,7 +182,28 @@ def main():
                     print(f"Company: {app.company_name}")
                     print(f"Deadline: {app.deadline}")
             else:
-                print("No expired deadlines.")                                
+                print("No expired deadlines.")
+        elif choice == "8":
+            today = input("Enter today's date (YYYY-MM-DD): ").strip()
+
+            due_followups = []
+
+            for application in applications:
+                if application.follow_up_date != "Not specified":
+                    if application.follow_up_date <= today:
+                        due_followups.append(application)
+
+            print("\nFollow-ups due:")
+
+            if due_followups:
+                for app in due_followups:
+                    print("\n------------------------------")
+                    print(f"ID: {app.id}")
+                    print(f"Company: {app.company_name}")
+                    print(f"Follow-up Date: {app.follow_up_date}")
+                    print(f"Status: {app.status}")
+            else:
+                print("No follow-ups due.")                                                
         elif choice == "0":
             print("\nThank you for using Job Application Tracker!")
             break

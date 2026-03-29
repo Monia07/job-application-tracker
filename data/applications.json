@@ -51,6 +51,19 @@
             "follow_up_date": "2026-04-30",
             "job_link": "Not specified",
             "notes": "Not specified"
+        },
+        {
+            "id": 5,
+            "company_name": "H&M",
+            "job_title": "Mobile Fullstack Developer",
+            "status": "applied",
+            "date_applied": "2026-03-12",
+            "deadline": "2026-04-01",
+            "contact_name": "Hennes Mauritz",
+            "contact_email": "name.name@hm.com",
+            "follow_up_date": "2026-04-02",
+            "job_link": "Not specified",
+            "notes": "Not specified"
         }
     ]
 }
