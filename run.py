@@ -34,6 +34,7 @@ def main():
                     print(f"Job Title: {application.job_title}")
                     print(f"Status: {application.status}")
                     print(f"Date Applied: {application.date_applied}")
+                    print(f"Notes: {application.notes}")
                     print()
         elif choice == "2":
             company = input("Company name: ")
@@ -75,6 +76,23 @@ def main():
 
             if not found:
                 print("Application not found.")
+        elif choice == "5":
+            application_id = input("Enter application ID: ").strip()
+            notes = input("Enter notes: ").strip()
+
+            found = False
+
+            for application in applications:
+                if str(application.id) == application_id:
+                    application.notes = notes
+                    found = True
+                    save_applications(applications)
+                    print("Notes updated!")
+                    break
+
+            if not found:
+                print("Application not found.")
+                
         elif choice == "0":
             print("\nThank you for using Job Application Tracker!")
             break
