@@ -12,6 +12,32 @@
             "follow_up_date": "2026-03-15",
             "job_link": "Not specified",
             "notes": "Not specified"
+        },
+        {
+            "id": 2,
+            "company_name": "Microsoft",
+            "job_title": "Fullstack Developer",
+            "status": "applied",
+            "date_applied": "2026-01-29",
+            "deadline": "2026-02-05",
+            "contact_name": "Anna Andersson",
+            "contact_email": "Not specified",
+            "follow_up_date": "Not specified",
+            "job_link": "Not specified",
+            "notes": "Not specified"
+        },
+        {
+            "id": 3,
+            "company_name": "Amazon.se",
+            "job_title": "Junior Backend Developer",
+            "status": "applied",
+            "date_applied": "2026-03-20",
+            "deadline": "Not specified",
+            "contact_name": "Lisa Larsson",
+            "contact_email": "Lisa@amazon.se",
+            "follow_up_date": "Not specified",
+            "job_link": "Not specified",
+            "notes": "Not specified"
         }
     ]
 }

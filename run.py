@@ -69,6 +69,33 @@ def main():
             save_applications(applications)
 
             print("Application added!")
+        elif choice == "3":
+            search_term = input("Enter company or job title to search: ").strip().lower()
+
+            results = []
+
+            for application in applications:
+                if (search_term in application.company_name.lower() or
+                    search_term in application.job_title.lower()):
+                    results.append(application)
+
+        if results:
+            print("\nSearch results:")
+            for application in results:
+                print("\n------------------------------")
+                print(f"ID: {application.id}")
+                print(f"Company: {application.company_name}")
+                print(f"Job Title: {application.job_title}")
+                print(f"Status: {application.status}")
+                print(f"Date Applied: {application.date_applied}")
+                print(f"Deadline: {application.deadline}")
+                print(f"Contact Name: {application.contact_name}")
+                print(f"Contact Email: {application.contact_email}")
+                print(f"Follow-up Date: {application.follow_up_date}")
+                print(f"Job Link: {application.job_link}")
+                print(f"Notes: {application.notes}")
+            else:
+                print("No matching applications found.")                       
         elif choice == "4":
             application_id = input("Enter application ID: ").strip()
             new_status = input(
