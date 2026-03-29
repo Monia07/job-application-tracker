@@ -34,24 +34,35 @@ def main():
                     print(f"Job Title: {application.job_title}")
                     print(f"Status: {application.status}")
                     print(f"Date Applied: {application.date_applied}")
+                    print(f"Deadline: {application.deadline}")
+                    print(f"Contact Name: {application.contact_name}")
+                    print(f"Contact Email: {application.contact_email}")
+                    print(f"Follow-up Date: {application.follow_up_date}")
+                    print(f"Job Link: {application.job_link}")
                     print(f"Notes: {application.notes}")
                     print()
         elif choice == "2":
-            company = input("Company name: ")
-            title = input("Job title: ")
+            company = input("Company name: ").strip()
+            title = input("Job title: ").strip()
+            date_applied = input("Date applied (YYYY-MM-DD): ").strip()
+            deadline = input("Deadline (YYYY-MM-DD): ").strip()
+            contact_name = input("Contact name: ").strip()
+            contact_email = input("Contact email: ").strip()
+            follow_up_date = input("Follow-up date (YYYY-MM-DD): ").strip()
+            job_link = input("Job link: ").strip()
 
             new_app = JobApplication(
                 id=len(applications) + 1,
                 company_name=company,
                 job_title=title,
                 status="applied",
-                date_applied="",
-                deadline="",
-                contact_name="",
-                contact_email="",
-                follow_up_date="",
-                job_link="",
-                notes=""
+                date_applied=date_applied if date_applied else "Not specified",
+                deadline=deadline if deadline else "Not specified",
+                contact_name=contact_name if contact_name else "Not specified",
+                contact_email=contact_email if contact_email else "Not specified",
+                follow_up_date=follow_up_date if follow_up_date else "Not specified",
+                job_link=job_link if job_link else "Not specified",
+                notes="Not specified"
             )
 
             applications.append(new_app)

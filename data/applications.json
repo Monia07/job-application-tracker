@@ -12,6 +12,19 @@
             "follow_up_date": "",
             "job_link": "",
             "notes": "2026-03-15: Interview booked (scheduled for 2026-03-31, 13:00pm)"
+        },
+        {
+            "id": 2,
+            "company_name": "Meta",
+            "job_title": "Frontend Developer",
+            "status": "applied",
+            "date_applied": "2026-02-26",
+            "deadline": "Not specified",
+            "contact_name": "Not specified",
+            "contact_email": "my.name@meta.com",
+            "follow_up_date": "2026-03-15",
+            "job_link": "Not specified",
+            "notes": "Not specified"
         }
     ]
 }
