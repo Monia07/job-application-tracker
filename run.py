@@ -57,7 +57,24 @@ def main():
             save_applications(applications)
 
             print("Application added!")
+        elif choice == "4":
+            application_id = input("Enter application ID: ").strip()
+            new_status = input(
+                "Enter new status (applied/interview/offer/rejected/withdrawn): "
+            ).strip().lower()
 
+            found = False
+
+            for application in applications:
+                if str(application.id) == application_id:
+                    application.status = new_status
+                    found = True
+                    save_applications(applications)
+                    print("Application status updated!")
+                    break
+
+            if not found:
+                print("Application not found.")
         elif choice == "0":
             print("\nThank you for using Job Application Tracker!")
             break
