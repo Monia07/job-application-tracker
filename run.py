@@ -103,7 +103,27 @@ def main():
 
             if not found:
                 print("Application not found.")
-                
+        elif choice == "6":
+            application_id = input("Enter application ID to delete: ").strip()
+
+            found = False
+
+            for application in applications:
+                if str(application.id) == application_id:
+                    confirm = input("Are you sure you want to delete this application? (y/n): ").strip().lower()
+
+                    if confirm == "y":
+                        applications.remove(application)
+                        save_applications(applications)
+                        print("Application deleted.")
+                    else:
+                        print("Deletion cancelled.")
+
+                    found = True
+                    break
+
+            if not found:
+                print("Application not found.")                
         elif choice == "0":
             print("\nThank you for using Job Application Tracker!")
             break

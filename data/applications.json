@@ -1,19 +1,6 @@
 {
     "applications": [
         {
-            "id": 1,
-            "company_name": "Spotify",
-            "job_title": "Backend Developer",
-            "status": "applied",
-            "date_applied": "",
-            "deadline": "",
-            "contact_name": "",
-            "contact_email": "",
-            "follow_up_date": "",
-            "job_link": "",
-            "notes": "2026-03-15: Interview booked (scheduled for 2026-03-31, 13:00pm)"
-        },
-        {
             "id": 2,
             "company_name": "Meta",
             "job_title": "Frontend Developer",
