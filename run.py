@@ -79,21 +79,21 @@ def main():
                     search_term in application.job_title.lower()):
                     results.append(application)
 
-        if results:
-            print("\nSearch results:")
-            for application in results:
-                print("\n------------------------------")
-                print(f"ID: {application.id}")
-                print(f"Company: {application.company_name}")
-                print(f"Job Title: {application.job_title}")
-                print(f"Status: {application.status}")
-                print(f"Date Applied: {application.date_applied}")
-                print(f"Deadline: {application.deadline}")
-                print(f"Contact Name: {application.contact_name}")
-                print(f"Contact Email: {application.contact_email}")
-                print(f"Follow-up Date: {application.follow_up_date}")
-                print(f"Job Link: {application.job_link}")
-                print(f"Notes: {application.notes}")
+            if results:
+                print("\nSearch results:")
+                for application in results:
+                    print("\n------------------------------")
+                    print(f"ID: {application.id}")
+                    print(f"Company: {application.company_name}")
+                    print(f"Job Title: {application.job_title}")
+                    print(f"Status: {application.status}")
+                    print(f"Date Applied: {application.date_applied}")
+                    print(f"Deadline: {application.deadline}")
+                    print(f"Contact Name: {application.contact_name}")
+                    print(f"Contact Email: {application.contact_email}")
+                    print(f"Follow-up Date: {application.follow_up_date}")
+                    print(f"Job Link: {application.job_link}")
+                    print(f"Notes: {application.notes}")
             else:
                 print("No matching applications found.")                       
         elif choice == "4":
@@ -150,7 +150,39 @@ def main():
                     break
 
             if not found:
-                print("Application not found.")                
+                print("Application not found.")
+        elif choice == "7":
+            today = input("Enter today's date (YYYY-MM-DD): ").strip()
+
+            upcoming = []
+            expired = []
+
+            for application in applications:
+                if application.deadline != "Not specified":
+                    if application.deadline >= today:
+                        upcoming.append(application)
+                    else:
+                        expired.append(application)
+
+            print("\nUpcoming deadlines:")
+            if upcoming:
+                for app in upcoming:
+                    print("------------------------------")
+                    print(f"ID: {app.id}")
+                    print(f"Company: {app.company_name}")
+                    print(f"Deadline: {app.deadline}")
+            else:
+                print("No upcoming deadlines.")
+
+            print("\nExpired deadlines:")
+            if expired:
+                for app in expired:
+                    print("------------------------------")
+                    print(f"ID: {app.id}")
+                    print(f"Company: {app.company_name}")
+                    print(f"Deadline: {app.deadline}")
+            else:
+                print("No expired deadlines.")                                
         elif choice == "0":
             print("\nThank you for using Job Application Tracker!")
             break

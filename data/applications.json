@@ -38,6 +38,19 @@
             "follow_up_date": "Not specified",
             "job_link": "Not specified",
             "notes": "Not specified"
+        },
+        {
+            "id": 4,
+            "company_name": "Klarna",
+            "job_title": "Junior Software Developer",
+            "status": "applied",
+            "date_applied": "2026-03-28",
+            "deadline": "2026-04-28",
+            "contact_name": "Anders Andersson",
+            "contact_email": "name.lastname@klarna.com",
+            "follow_up_date": "2026-04-30",
+            "job_link": "Not specified",
+            "notes": "Not specified"
         }
     ]
 }
