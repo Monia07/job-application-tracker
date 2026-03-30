@@ -38,6 +38,19 @@
             "follow_up_date": "2026-04-01",
             "job_link": "http://spotify.com",
             "notes": "Not specified"
+        },
+        {
+            "id": 4,
+            "company_name": "Spotify",
+            "job_title": "Junior Fullstack Developer",
+            "status": "applied",
+            "date_applied": "2026-03-18",
+            "deadline": "2026-04-15",
+            "contact_name": "My Name",
+            "contact_email": "her.name@spotify.com",
+            "follow_up_date": "2026-04-20",
+            "job_link": "https://spotify.com",
+            "notes": "Not specified"
         }
     ]
 }
