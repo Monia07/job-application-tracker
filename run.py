@@ -51,6 +51,16 @@ def main():
             follow_up_date = input("Follow-up date (YYYY-MM-DD): ").strip()
             job_link = input("Job link: ").strip()
 
+            while job_link:
+                if job_link.startswith("http://") or job_link.startswith("https://"):
+                    break
+                else:
+                    print("Invalid URL. Please enter a valid link or leave empty.")
+                    job_link = input("Job link: ").strip()
+
+            if not job_link:
+                job_link = "Not specified"
+
             new_app = JobApplication(
                 id=len(applications) + 1,
                 company_name=company,
