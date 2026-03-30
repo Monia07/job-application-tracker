@@ -127,7 +127,6 @@ flowchart TD
     ```
 
 ---
-
 ## Design (M4.1)
 This section documents the logic and flow of the application and supports planning and structure.
 
