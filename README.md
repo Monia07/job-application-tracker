@@ -69,11 +69,11 @@ Future improvements such as PostgreSQL or Google Sheets API can be implemented t
 
 ---
 
-## Flowchart
+### Flowchart
 
 The flowchart was created using Mermaid.js to ensure that the project documentation is version-controlled and easily maintainable directly within the repository.
 
-````mermaid
+```mermaid
 flowchart TD
     A([Start]) --> B[Display Menu]
     B --> C[User selects option]
@@ -124,7 +124,6 @@ flowchart TD
 
     F --> Z[Exit]
     Z --> AA([End])
-```
 
 ---
 ## Design (M4.1)
@@ -250,4 +249,4 @@ Python Documentation
 
 ## Author
 Monia
-````
+```
