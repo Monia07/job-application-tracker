@@ -1,0 +1,81 @@
+=== JOB APPLICATION TRACKER REPORT ===
+Generated automatically
+
+------------------------------
+ID: 2
+Company: Meta
+Job Title: Frontend Developer
+Status: applied
+Date Applied: 2026-02-26
+Deadline: Not specified
+Contact Name: Not specified
+Contact Email: my.name@meta.com
+Follow-up Date: 2026-03-15
+Job Link: Not specified
+Notes: Not specified
+
+------------------------------
+ID: 2
+Company: Microsoft
+Job Title: Fullstack Developer
+Status: applied
+Date Applied: 2026-01-29
+Deadline: 2026-02-05
+Contact Name: Anna Andersson
+Contact Email: Not specified
+Follow-up Date: Not specified
+Job Link: Not specified
+Notes: Not specified
+
+------------------------------
+ID: 3
+Company: Amazon.se
+Job Title: Junior Backend Developer
+Status: applied
+Date Applied: 2026-03-20
+Deadline: Not specified
+Contact Name: Lisa Larsson
+Contact Email: Lisa@amazon.se
+Follow-up Date: Not specified
+Job Link: Not specified
+Notes: Not specified
+
+------------------------------
+ID: 4
+Company: Klarna
+Job Title: Junior Software Developer
+Status: applied
+Date Applied: 2026-03-28
+Deadline: 2026-04-28
+Contact Name: Anders Andersson
+Contact Email: name.lastname@klarna.com
+Follow-up Date: 2026-04-30
+Job Link: Not specified
+Notes: Not specified
+
+------------------------------
+ID: 5
+Company: H&M
+Job Title: Mobile Fullstack Developer
+Status: applied
+Date Applied: 2026-03-12
+Deadline: 2026-04-01
+Contact Name: Hennes Mauritz
+Contact Email: name.name@hm.com
+Follow-up Date: 2026-04-02
+Job Link: Not specified
+Notes: Not specified
+
+------------------------------
+ID: 6
+Company: Spotify
+Job Title: Junior Backend Developer
+Status: applied
+Date Applied: 2026-02-23
+Deadline: 2026-03-31
+Contact Name: Karl Kall
+Contact Email: lastname.firstname@spotify.com
+Follow-up Date: 2026-03-23
+Job Link: Not specified
+Notes: Zoom interview booked 2026-04-02
+

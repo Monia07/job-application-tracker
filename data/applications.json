@@ -64,6 +64,19 @@
             "follow_up_date": "2026-04-02",
             "job_link": "Not specified",
             "notes": "Not specified"
+        },
+        {
+            "id": 6,
+            "company_name": "Spotify",
+            "job_title": "Junior Backend Developer",
+            "status": "applied",
+            "date_applied": "2026-02-23",
+            "deadline": "2026-03-31",
+            "contact_name": "Karl Kall",
+            "contact_email": "lastname.firstname@spotify.com",
+            "follow_up_date": "2026-03-23",
+            "job_link": "Not specified",
+            "notes": "Zoom interview booked 2026-04-02"
         }
     ]
 }

@@ -203,7 +203,27 @@ def main():
                     print(f"Follow-up Date: {app.follow_up_date}")
                     print(f"Status: {app.status}")
             else:
-                print("No follow-ups due.")                                                
+                print("No follow-ups due.") 
+        elif choice == "9":
+            with open("report.txt", "w") as file:
+                file.write("=== JOB APPLICATION TRACKER REPORT ===\n")
+                file.write("Generated automatically\n\n")
+
+                for app in applications:
+                    file.write("------------------------------\n")
+                    file.write(f"ID: {app.id}\n")
+                    file.write(f"Company: {app.company_name}\n")
+                    file.write(f"Job Title: {app.job_title}\n")
+                    file.write(f"Status: {app.status}\n")
+                    file.write(f"Date Applied: {app.date_applied}\n")
+                    file.write(f"Deadline: {app.deadline}\n")
+                    file.write(f"Contact Name: {app.contact_name}\n")
+                    file.write(f"Contact Email: {app.contact_email}\n")
+                    file.write(f"Follow-up Date: {app.follow_up_date}\n")
+                    file.write(f"Job Link: {app.job_link}\n")
+                    file.write(f"Notes: {app.notes}\n\n")
+
+            print("\nReport exported to report.txt")                                               
         elif choice == "0":
             print("\nThank you for using Job Application Tracker!")
             break
