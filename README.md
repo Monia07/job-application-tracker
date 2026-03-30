@@ -64,7 +64,7 @@ Future improvements such as PostgreSQL or Google Sheets API can be implemented t
 
 The flowchart was created using Mermaid.js to ensure that the project documentation is version-controlled and easily maintainable directly within the repository.
 
-````mermaid
+```mermaid
 flowchart TD
     A([Start]) --> B[Display Menu]
     B --> C[User selects option]
@@ -115,15 +115,18 @@ flowchart TD
 
     F --> Z[Exit]
     Z --> AA([End])
-```---
+```
+
+---
 
 ## Design (M4.1)
 
-This section documents the logic and flow of the application and supports planning and structure.---
+This section documents the logic and flow of the application and supports planning and structure.
 
 ## Data Model
 
 The application uses a structured data model for each job entry:
+
 - id
 - company_name
 - job_title
@@ -138,10 +141,10 @@ The application uses a structured data model for each job entry:
 
 ## Technologies Used
 
-* Python 3
-* JSON
-* os (file handling)
-* datetime (date validation and comparison)---
+- Python 3
+- JSON
+- os (file handling)
+- datetime (date validation and comparison)---
 
 ## Features
 
@@ -159,14 +162,14 @@ The application uses a structured data model for each job entry:
 
 ### Manual Testing
 
-| Feature | Input | Expected Result | Outcome |
-|--------|------|----------------|--------|
-| Menu | Invalid choice | Error message | Pass |
-| Add | Empty input | Validation error | Pass |
-| Date | Invalid date | Error message | Pass |
-| Search | Not found | Message shown | Pass |
-| Delete | Cancel | No deletion | Pass |
-| ID | Invalid ID | Error handled | Pass |
+| Feature | Input          | Expected Result  | Outcome |
+| ------- | -------------- | ---------------- | ------- |
+| Menu    | Invalid choice | Error message    | Pass    |
+| Add     | Empty input    | Validation error | Pass    |
+| Date    | Invalid date   | Error message    | Pass    |
+| Search  | Not found      | Message shown    | Pass    |
+| Delete  | Cancel         | No deletion      | Pass    |
+| ID      | Invalid ID     | Error handled    | Pass    |
 
 ### PEP8
 
@@ -230,5 +233,9 @@ Code Institute
 Python Documentation---
 
 ## Author
+
 Monia
-````
+
+```
+
+```
