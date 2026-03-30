@@ -2,7 +2,18 @@
 
 ## Live Project
 
-The live version of this project can be found here: [Job Application Tracker - Live Link](DIN_HEROKU_URL_HÄR)
+The live version of this project is deployed on Heroku as a **worker process**.
+
+Because this is a pure CLI application without a web-based terminal wrapper (like index.js), the application is designed to be executed via the Heroku CLI.
+
+To run the application:
+
+1. Open your local terminal.
+2. Log in to Heroku: `heroku login`
+3. Run the following command:
+   ```bash
+   heroku run python run.py -a job-tracker-monia
+   ```
 
 ---
 
@@ -62,7 +73,7 @@ Future improvements such as PostgreSQL or Google Sheets API can be implemented t
 
 The flowchart was created using Mermaid.js to ensure that the project documentation is version-controlled and easily maintainable directly within the repository.
 
-```mermaid
+````mermaid
 flowchart TD
     A([Start]) --> B[Display Menu]
     B --> C[User selects option]
@@ -113,6 +124,7 @@ flowchart TD
 
     F --> Z[Exit]
     Z --> AA([End])
+    ```
 
 ---
 
@@ -171,7 +183,7 @@ The application uses a structured data model for each job entry:
 | ID | Invalid ID | Error handled | Pass |
 
 ### PEP8
-Code validated with CI Python Linter – no major issues.
+Code was validated using the CI Python Linter. Minor formatting issues such as line length, indentation, and trailing whitespace were identified and corrected.
 
 ---
 
@@ -180,7 +192,7 @@ Deployed using Heroku.
 
 ### Deployment Steps
 1. requirements.txt created using pip freeze
-2. Procfile added
+2. **Procfile**: Created a `Procfile` with the following content: `worker: python run.py`. This ensures the application runs as a persistent background process on Heroku.
 3. GitHub repository connected
 4. Heroku buildpack added
 
@@ -239,4 +251,4 @@ Python Documentation
 
 ## Author
 Monia
-```
+````
