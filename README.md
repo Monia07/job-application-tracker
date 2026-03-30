@@ -11,11 +11,10 @@ To run the application:
 1. Open your local terminal.
 2. Log in to Heroku: `heroku login`
 3. Run the following command:
-   ```bash
-   heroku run python run.py -a job-tracker-monia
-   ```
-
----
+   ````bash
+   heroku run python run.py -a job-tracker-mo
+   ```---
+   ````
 
 ## Introduction
 
@@ -23,9 +22,7 @@ Job Application Tracker is a Python command-line application designed to help us
 
 The project is based on a real-world need. As I am approaching the end of my studies at Code Institute, I will soon begin applying for roles within full-stack development. This will likely involve managing multiple applications at once, making it difficult to track progress, deadlines, and follow-ups manually.
 
-This application provides a structured and practical solution by allowing users to store and manage job application data in one place through a simple command-line interface.
-
----
+This application provides a structured and practical solution by allowing users to store and manage job application data in one place through a simple command-line interface.---
 
 ## User Goals
 
@@ -33,9 +30,7 @@ This application provides a structured and practical solution by allowing users 
 - As a user, I want to be able to add, update, and remove applications so that my data always stays accurate and relevant.
 - As a user, I want to search through my applications to quickly find specific roles or companies when needed.
 - As a user, I want to monitor deadlines and follow-up dates so I can stay organised and not miss important opportunities.
-- As a user, I want to store additional details such as notes and job links so I have all relevant information available in one system.
-
----
+- As a user, I want to store additional details such as notes and job links so I have all relevant information available in one system.---
 
 ## Developer Goals
 
@@ -43,9 +38,7 @@ This application provides a structured and practical solution by allowing users 
 - Implement full CRUD functionality.
 - Apply validation and defensive programming.
 - Maintain clean and readable code.
-- Demonstrate understanding of data modelling and deployment.
-
----
+- Demonstrate understanding of data modelling and deployment.---
 
 ## Rationale
 
@@ -65,15 +58,13 @@ JSON was used as the data storage method to enable simple and readable data hand
 
 During development, I was aware that Heroku uses an ephemeral file system, meaning that locally stored JSON data does not persist after deployment restarts. The choice to continue with JSON was intentional to prioritise a stable and fully functional MVP.
 
-Future improvements such as PostgreSQL or Google Sheets API can be implemented to support persistent cloud storage.
-
----
+Future improvements such as PostgreSQL or Google Sheets API can be implemented to support persistent cloud storage.---
 
 ### Flowchart
 
 The flowchart was created using Mermaid.js to ensure that the project documentation is version-controlled and easily maintainable directly within the repository.
 
-```mermaid
+````mermaid
 flowchart TD
     A([Start]) --> B[Display Menu]
     B --> C[User selects option]
@@ -124,14 +115,14 @@ flowchart TD
 
     F --> Z[Exit]
     Z --> AA([End])
+```---
 
----
 ## Design (M4.1)
-This section documents the logic and flow of the application and supports planning and structure.
 
----
+This section documents the logic and flow of the application and supports planning and structure.---
 
 ## Data Model
+
 The application uses a structured data model for each job entry:
 - id
 - company_name
@@ -143,19 +134,17 @@ The application uses a structured data model for each job entry:
 - contact_email
 - notes
 - follow_up_date
-- job_link
-
----
+- job_link---
 
 ## Technologies Used
+
 * Python 3
 * JSON
 * os (file handling)
-* datetime (date validation and comparison)
-
----
+* datetime (date validation and comparison)---
 
 ## Features
+
 - View all applications
 - Add new application
 - Search applications
@@ -164,13 +153,12 @@ The application uses a structured data model for each job entry:
 - Delete applications
 - View deadlines
 - View follow-ups
-- Export report
-
----
+- Export report---
 
 ## Testing
 
 ### Manual Testing
+
 | Feature | Input | Expected Result | Outcome |
 |--------|------|----------------|--------|
 | Menu | Invalid choice | Error message | Pass |
@@ -181,28 +169,27 @@ The application uses a structured data model for each job entry:
 | ID | Invalid ID | Error handled | Pass |
 
 ### PEP8
-Code was validated using the CI Python Linter. Minor formatting issues such as line length, indentation, and trailing whitespace were identified and corrected.
 
----
+Code was validated using the CI Python Linter. Minor formatting issues such as line length, indentation, and trailing whitespace were identified and corrected.---
 
 ## Deployment (LO9)
+
 Deployed using Heroku.
 
 ### Deployment Steps
+
 1. requirements.txt created using pip freeze
-2. **Procfile**: Created a `Procfile` with the following content: `worker: python run.py`. This ensures the application runs as a persistent background process on Heroku.
+2. Procfile created: `worker: python run.py`
 3. GitHub repository connected
 4. Heroku buildpack added
 
 ### Important Note
-Heroku uses an ephemeral file system, meaning data stored in JSON resets after application restarts. This limitation is acknowledged and considered in the project design.
 
----
+Heroku uses an ephemeral file system, meaning data stored in JSON resets after application restarts. This limitation is acknowledged and considered in the project design.---
 
 ## Version Control
-Git was used throughout development with frequent commits and clear, descriptive messages.
 
----
+Git was used throughout development with frequent commits and clear, descriptive messages.---
 
 ## Known Bugs & Fixes
 
@@ -224,29 +211,24 @@ Git was used throughout development with frequent commits and clear, descriptive
 
 - Export showing outdated data
   Cause: Data not refreshed
-  Fix: Reloaded data before export
-
----
+  Fix: Reloaded data before export---
 
 ## Limitations
-- Data resets on Heroku due to ephemeral file system
-- CLI interface limits visual presentation
 
----
+- Data resets on Heroku due to ephemeral file system
+- CLI interface limits visual presentation---
 
 ## Future Improvements
+
 - PostgreSQL integration
 - Google Sheets API
-- Improved CLI UI (e.g. Rich library)
-
----
+- Improved CLI UI (e.g. Rich library)---
 
 ## Credits
-Code Institute
-Python Documentation
 
----
+Code Institute
+Python Documentation---
 
 ## Author
 Monia
-```
+````
