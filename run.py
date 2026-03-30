@@ -41,6 +41,7 @@ def main():
                     print(f"Job Link: {application.job_link}")
                     print(f"Notes: {application.notes}")
                     print()
+
         elif choice == "2":
             company = input("Company name: ").strip()
             title = input("Job title: ").strip()
@@ -52,11 +53,15 @@ def main():
             job_link = input("Job link: ").strip()
 
             while job_link:
-                if job_link.startswith("http://") or job_link.startswith("https://"):
+                if (
+                    job_link.startswith("http://")
+                    or job_link.startswith("https://")
+                ):
                     break
-                else:
-                    print("Invalid URL. Please enter a valid link or leave empty.")
-                    job_link = input("Job link: ").strip()
+                print(
+                    "Invalid URL. Please enter a valid link or leave empty."
+                )
+                job_link = input("Job link: ").strip()
 
             if not job_link:
                 job_link = "Not specified"
@@ -66,27 +71,40 @@ def main():
                 company_name=company,
                 job_title=title,
                 status="applied",
-                date_applied=date_applied if date_applied else "Not specified",
+                date_applied=(
+                    date_applied if date_applied else "Not specified"
+                ),
                 deadline=deadline if deadline else "Not specified",
-                contact_name=contact_name if contact_name else "Not specified",
-                contact_email=contact_email if contact_email else "Not specified",
-                follow_up_date=follow_up_date if follow_up_date else "Not specified",
+                contact_name=(
+                    contact_name if contact_name else "Not specified"
+                ),
+                contact_email=(
+                    contact_email if contact_email else "Not specified"
+                ),
+                follow_up_date=(
+                    follow_up_date if follow_up_date else "Not specified"
+                ),
                 job_link=job_link if job_link else "Not specified",
-                notes="Not specified"
+                notes="Not specified",
             )
 
             applications.append(new_app)
             save_applications(applications)
 
             print("Application added!")
+
         elif choice == "3":
-            search_term = input("Enter company or job title to search: ").strip().lower()
+            search_term = input(
+                "Enter company or job title to search: "
+            ).strip().lower()
 
             results = []
 
             for application in applications:
-                if (search_term in application.company_name.lower() or
-                    search_term in application.job_title.lower()):
+                if (
+                    search_term in application.company_name.lower()
+                    or search_term in application.job_title.lower()
+                ):
                     results.append(application)
 
             if results:
@@ -105,11 +123,13 @@ def main():
                     print(f"Job Link: {application.job_link}")
                     print(f"Notes: {application.notes}")
             else:
-                print("No matching applications found.")                       
+                print("No matching applications found.")
+
         elif choice == "4":
             application_id = input("Enter application ID: ").strip()
             new_status = input(
-                "Enter new status (applied/interview/offer/rejected/withdrawn): "
+                "Enter new status "
+                "(applied/interview/offer/rejected/withdrawn): "
             ).strip().lower()
 
             found = False
@@ -124,6 +144,7 @@ def main():
 
             if not found:
                 print("Application not found.")
+
         elif choice == "5":
             application_id = input("Enter application ID: ").strip()
             notes = input("Enter notes: ").strip()
@@ -140,14 +161,20 @@ def main():
 
             if not found:
                 print("Application not found.")
+
         elif choice == "6":
-            application_id = input("Enter application ID to delete: ").strip()
+            application_id = input(
+                "Enter application ID to delete: "
+            ).strip()
 
             found = False
 
             for application in applications:
                 if str(application.id) == application_id:
-                    confirm = input("Are you sure you want to delete this application? (y/n): ").strip().lower()
+                    confirm = input(
+                        "Are you sure you want to delete this "
+                        "application? (y/n): "
+                    ).strip().lower()
 
                     if confirm == "y":
                         applications.remove(application)
@@ -161,6 +188,7 @@ def main():
 
             if not found:
                 print("Application not found.")
+
         elif choice == "7":
             today = input("Enter today's date (YYYY-MM-DD): ").strip()
 
@@ -193,6 +221,7 @@ def main():
                     print(f"Deadline: {app.deadline}")
             else:
                 print("No expired deadlines.")
+
         elif choice == "8":
             today = input("Enter today's date (YYYY-MM-DD): ").strip()
 
@@ -213,9 +242,10 @@ def main():
                     print(f"Follow-up Date: {app.follow_up_date}")
                     print(f"Status: {app.status}")
             else:
-                print("No follow-ups due.") 
+                print("No follow-ups due.")
+
         elif choice == "9":
-            with open("report.txt", "w") as file:
+            with open("report.txt", "w", encoding="utf-8") as file:
                 file.write("=== JOB APPLICATION TRACKER REPORT ===\n")
                 file.write("Generated automatically\n\n")
 
@@ -233,7 +263,8 @@ def main():
                     file.write(f"Job Link: {app.job_link}\n")
                     file.write(f"Notes: {app.notes}\n\n")
 
-            print("\nReport exported to report.txt")                                               
+            print("\nReport exported to report.txt")
+
         elif choice == "0":
             print("\nThank you for using Job Application Tracker!")
             break
