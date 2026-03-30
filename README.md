@@ -2,19 +2,18 @@
 
 ## Live Project
 
-The live version of this project is deployed on Heroku as a **worker process**.
+The live version of this project is deployed on Heroku and is executed as a one-off dyno via the Heroku CLI.
 
-Because this is a pure CLI application without a web-based terminal wrapper (like index.js), the application is designed to be executed via the Heroku CLI.
+Because this is a pure CLI application without a web-based terminal wrapper, the application is designed to be run through the Heroku CLI rather than a browser.
 
 To run the application:
 
 1. Open your local terminal.
 2. Log in to Heroku: `heroku login`
 3. Run the following command:
-   ````bash
-   heroku run python run.py -a job-tracker-mo
-   ```---
-   ````
+   ```bash
+   heroku run python run.py -a job-tracker-monia
+   ```
 
 ## Introduction
 
