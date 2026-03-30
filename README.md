@@ -174,6 +174,28 @@ The application uses a structured data model for each job entry:
 
 Code was validated using the CI Python Linter. Minor formatting issues such as line length, indentation, and trailing whitespace were identified and corrected.---
 
+## Application Screenshots
+
+### App Start (Main Menu)
+
+![App Start](assets/images/app-start.png)
+
+### Add Application
+
+![Add Application](assets/images/app-add-application.png)
+
+### Search Applications
+
+![Search Applications](assets/images/app-search.png)
+
+### Heroku CLI Test
+
+![Heroku CLI](assets/images/heroku-cli-test.png)
+
+### PEP8 Validation
+
+![PEP8](assets/images/pep8.png)
+
 ## Deployment (LO9)
 
 Deployed using Heroku.
