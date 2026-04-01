@@ -59,6 +59,32 @@ During development, I was aware that Heroku uses an ephemeral file system, meani
 
 Future improvements such as PostgreSQL or Google Sheets API can be implemented to support persistent cloud storage.---
 
+## MS3 Design Approach
+
+This project follows the MS3 principle of focusing on backend logic rather than visual design.
+
+Instead of building a graphical user interface, a command-line interface (CLI) was used to:
+
+- Emphasise program logic and data flow
+- Handle user interaction through structured input and feedback
+- Focus on validation, error handling, and data manipulation
+
+This approach aligns with MS3 guidance, where the focus is on "how the logic works" rather than how the application looks.---
+
+## Development Decisions
+
+During the development of this project, several technical decisions were made based on the scope and goals of MS3.
+
+A command-line interface (CLI) was chosen instead of a graphical interface to prioritise backend logic, data handling, and program structure. This aligns with the MS3 focus on how the application works rather than how it looks.
+
+JSON was selected as the data storage solution due to its simplicity and ease of use for a single-user application. This allowed for quick implementation and clear data structure without introducing unnecessary complexity.
+
+However, it is recognised that JSON has limitations, particularly in a deployed environment such as Heroku where the file system is ephemeral. For a more scalable solution, a database such as PostgreSQL or an external service like Google Sheets API would be more appropriate.
+
+Input validation and error handling were prioritised to ensure the application remains stable under incorrect user input. This includes handling empty inputs, invalid formats, and incorrect menu selections.
+
+These decisions were made to balance simplicity, functionality, and alignment with the learning objectives of the project.---
+
 ### Flowchart
 
 The flowchart was created using Mermaid.js to ensure that the project documentation is version-controlled and easily maintainable directly within the repository.
@@ -118,7 +144,7 @@ flowchart TD
 
 ---
 
-## Design (M4.1)
+## Design
 
 This section documents the logic and flow of the application and supports planning and structure.
 
@@ -170,6 +196,33 @@ The application uses a structured data model for each job entry:
 | Delete  | Cancel         | No deletion      | Pass    |
 | ID      | Invalid ID     | Error handled    | Pass    |
 
+### Testing Approach
+
+Testing was carried out manually to simulate real user interaction.
+
+The focus was on:
+
+- Ensuring all CRUD operations function correctly
+- Validating user input and preventing invalid data
+- Confirming that error messages are clear and helpful
+- Verifying that the application does not crash under invalid inputs
+
+All identified issues were resolved, and the final application runs without known logic errors.
+
+### Edge Case Handling
+
+The application was designed to handle a range of edge cases to ensure stability and reliability.
+
+Examples include:
+
+- Empty inputs are rejected and re-prompted
+- Incorrect data types are handled using validation checks
+- Invalid menu selections are caught and handled gracefully
+- Date validation ensures logical consistency (e.g. deadlines in the past are flagged)
+- Invalid IDs are handled without crashing the program
+
+These measures ensure that the application does not break under unexpected user input.
+
 ### PEP8
 
 Code was validated using the CI Python Linter. Minor formatting issues such as line length, indentation, and trailing whitespace were identified and corrected.---
@@ -196,7 +249,7 @@ Code was validated using the CI Python Linter. Minor formatting issues such as l
 
 ![PEP8](assets/images/pep8.png)
 
-## Deployment (LO9)
+## Deployment
 
 Deployed using Heroku.
 
@@ -247,6 +300,16 @@ Git was used throughout development with frequent commits and clear, descriptive
 - PostgreSQL integration
 - Google Sheets API
 - Improved CLI UI (e.g. Rich library)---
+
+## Reflection
+
+During development, several challenges were encountered, particularly around input validation and maintaining consistent data structure.
+
+One key learning outcome was the importance of validating user input to prevent the application from crashing. Implementing loops and validation checks improved the robustness of the program.
+
+If this project were to be developed further, a more scalable data storage solution such as PostgreSQL would be used to overcome the limitations of JSON, especially in a deployed environment like Heroku.
+
+This project helped strengthen understanding of program structure, data handling, and defensive programming.---
 
 ## Credits
 
