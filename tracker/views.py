@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+def application_list(request):
+    return render(request, "tracker/application_list.html")
+
