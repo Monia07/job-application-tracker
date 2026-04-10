@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import JobApplication
+from .forms import JobApplicationForm
 
 
 def application_list(request):
@@ -8,4 +9,20 @@ def application_list(request):
         request,
         "tracker/application_list.html",
         {"applications": applications},
+    )
+
+
+def add_application(request):
+    if request.method == "POST":
+        form = JobApplicationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("application_list")
+    else:
+        form = JobApplicationForm()
+
+    return render(
+        request,
+        "tracker/add_application.html",
+        {"form": form},
     )
