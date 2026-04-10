@@ -1,5 +1,11 @@
 from django.shortcuts import render
+from .models import JobApplication
+
 
 def application_list(request):
-    return render(request, "tracker/application_list.html")
-
+    applications = JobApplication.objects.all()
+    return render(
+        request,
+        "tracker/application_list.html",
+        {"applications": applications},
+    )

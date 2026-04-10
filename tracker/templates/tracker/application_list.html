@@ -1,3 +1,31 @@
 {% extends "tracker/base.html" %} {% block content %}
-<h1>It works</h1>
-{% endblock %}
+<h1>Job Applications</h1>
+
+{% if applications %}
+<table border="1" cellpadding="10">
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Job Title</th>
+      <th>Status</th>
+      <th>Date Applied</th>
+      <th>Deadline</th>
+      <th>Follow-up</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for application in applications %}
+    <tr>
+      <td>{{ application.company_name }}</td>
+      <td>{{ application.job_title }}</td>
+      <td>{{ application.status }}</td>
+      <td>{{ application.date_applied }}</td>
+      <td>{{ application.deadline }}</td>
+      <td>{{ application.follow_up_date }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No job applications found.</p>
+{% endif %} {% endblock %}
