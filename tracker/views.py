@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import JobApplication
 from .forms import JobApplicationForm
 
@@ -25,4 +25,22 @@ def add_application(request):
         request,
         "tracker/add_application.html",
         {"form": form},
+    )
+
+
+def edit_application(request, pk):
+    application = get_object_or_404(JobApplication, pk=pk)
+
+    if request.method == "POST":
+        form = JobApplicationForm(request.POST, instance=application)
+        if form.is_valid():
+            form.save()
+            return redirect("application_list")
+    else:
+        form = JobApplicationForm(instance=application)
+
+    return render(
+        request,
+        "tracker/edit_application.html",
+        {"form": form, "application": application},
     )

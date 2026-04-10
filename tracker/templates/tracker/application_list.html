@@ -1,5 +1,6 @@
 {% extends "tracker/base.html" %} {% block content %}
 <h1>Job Applications</h1>
+
 <p>
   <a href="{% url 'add_application' %}">Add Application</a>
 </p>
@@ -14,6 +15,7 @@
       <th>Date Applied</th>
       <th>Deadline</th>
       <th>Follow-up</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -25,6 +27,9 @@
       <td>{{ application.date_applied }}</td>
       <td>{{ application.deadline }}</td>
       <td>{{ application.follow_up_date }}</td>
+      <td>
+        <a href="{% url 'edit_application' application.pk %}">Edit</a>
+      </td>
     </tr>
     {% endfor %}
   </tbody>
