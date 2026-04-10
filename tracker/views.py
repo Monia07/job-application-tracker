@@ -44,3 +44,16 @@ def edit_application(request, pk):
         "tracker/edit_application.html",
         {"form": form, "application": application},
     )
+
+def delete_application(request, pk):
+    application = get_object_or_404(JobApplication, pk=pk)
+
+    if request.method == "POST":
+        application.delete()
+        return redirect("application_list")
+
+    return render(
+        request,
+        "tracker/delete_application.html",
+        {"application": application},
+    )

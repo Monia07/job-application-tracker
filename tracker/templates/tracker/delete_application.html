@@ -1,0 +1,15 @@
+{% extends "tracker/base.html" %} {% block content %}
+<h1>Delete Application</h1>
+
+<p>
+  Are you sure you want to delete
+  <strong>{{ application.company_name }} - {{ application.job_title }}</strong>?
+</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Yes, delete</button>
+</form>
+
+<p><a href="{% url 'application_list' %}">Cancel</a></p>
+{% endblock %}
