@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import JobApplication
 from .forms import JobApplicationForm
@@ -27,7 +28,9 @@ def add_application(request):
         form = JobApplicationForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Application added successfully.")
             return redirect("application_list")
+        messages.error(request, "Please correct the errors below.")
     else:
         form = JobApplicationForm()
 
@@ -45,7 +48,9 @@ def edit_application(request, pk):
         form = JobApplicationForm(request.POST, instance=application)
         if form.is_valid():
             form.save()
+            messages.success(request, "Application updated successfully.")
             return redirect("application_list")
+        messages.error(request, "Please correct the errors below.")
     else:
         form = JobApplicationForm(instance=application)
 
@@ -61,6 +66,7 @@ def delete_application(request, pk):
 
     if request.method == "POST":
         application.delete()
+        messages.success(request, "Application deleted successfully.")
         return redirect("application_list")
 
     return render(
