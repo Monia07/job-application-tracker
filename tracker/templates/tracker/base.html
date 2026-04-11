@@ -21,14 +21,20 @@
         <aside class="col-md-2 bg-light sidebar py-4 min-vh-100 border-end">
           <ul class="nav flex-column px-2">
             <li class="nav-item mb-2">
-              <a class="nav-link active" href="{% url 'application_list' %}"
-                >Dashboard</a
+              <a
+                class="nav-link {% if request.resolver_match.url_name == 'application_list' %}active{% endif %}"
+                href="{% url 'application_list' %}"
               >
+                Dashboard
+              </a>
             </li>
             <li class="nav-item mb-2">
-              <a class="nav-link" href="{% url 'add_application' %}"
-                >Add Application</a
+              <a
+                class="nav-link {% if request.resolver_match.url_name == 'add_application' %}active{% endif %}"
+                href="{% url 'add_application' %}"
               >
+                Add Application
+              </a>
             </li>
           </ul>
         </aside>
