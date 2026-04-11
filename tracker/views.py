@@ -5,10 +5,20 @@ from .forms import JobApplicationForm
 
 def application_list(request):
     applications = JobApplication.objects.all()
+
+    total_applications = applications.count()
+    interview_count = applications.filter(status="interview").count()
+    offer_count = applications.filter(status="offer").count()
+
     return render(
         request,
         "tracker/application_list.html",
-        {"applications": applications},
+        {
+            "applications": applications,
+            "total_applications": total_applications,
+            "interview_count": interview_count,
+            "offer_count": offer_count,
+        },
     )
 
 
@@ -44,6 +54,7 @@ def edit_application(request, pk):
         "tracker/edit_application.html",
         {"form": form, "application": application},
     )
+
 
 def delete_application(request, pk):
     application = get_object_or_404(JobApplication, pk=pk)

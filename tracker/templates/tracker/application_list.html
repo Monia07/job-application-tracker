@@ -6,9 +6,9 @@
       Track your applications, deadlines, and follow-ups in one place.
     </p>
   </div>
-  <a href="{% url 'add_application' %}" class="btn btn-primary"
-    >Add Application</a
-  >
+  <a href="{% url 'add_application' %}" class="btn btn-primary">
+    Add Application
+  </a>
 </div>
 
 <div class="row g-3 mb-4">
@@ -16,23 +16,25 @@
     <div class="card shadow-sm border-0">
       <div class="card-body">
         <h6 class="text-muted mb-2">Total Applications</h6>
-        <h3 class="mb-0">{{ applications|length }}</h3>
+        <h3 class="mb-0">{{ total_applications }}</h3>
       </div>
     </div>
   </div>
+
   <div class="col-md-4">
     <div class="card shadow-sm border-0">
       <div class="card-body">
         <h6 class="text-muted mb-2">Interviews</h6>
-        <h3 class="mb-0">Active</h3>
+        <h3 class="mb-0">{{ interview_count }}</h3>
       </div>
     </div>
   </div>
+
   <div class="col-md-4">
     <div class="card shadow-sm border-0">
       <div class="card-body">
         <h6 class="text-muted mb-2">Offers</h6>
-        <h3 class="mb-0">Follow Up</h3>
+        <h3 class="mb-0">{{ offer_count }}</h3>
       </div>
     </div>
   </div>
@@ -79,13 +81,15 @@
               <a
                 href="{% url 'edit_application' application.pk %}"
                 class="btn btn-sm btn-warning"
-                >Edit</a
               >
+                Edit
+              </a>
               <a
                 href="{% url 'delete_application' application.pk %}"
                 class="btn btn-sm btn-danger"
-                >Delete</a
               >
+                Delete
+              </a>
             </td>
           </tr>
           {% endfor %}
