@@ -7,9 +7,14 @@ from .forms import JobApplicationForm
 def application_list(request):
     applications = JobApplication.objects.all()
 
-    total_applications = applications.count()
-    interview_count = applications.filter(status="interview").count()
-    offer_count = applications.filter(status="offer").count()
+    status_filter = request.GET.get("status")
+
+    if status_filter:
+        applications = applications.filter(status=status_filter)
+
+    total_applications = JobApplication.objects.count()
+    interview_count = JobApplication.objects.filter(status="interview").count()
+    offer_count = JobApplication.objects.filter(status="offer").count()
 
     return render(
         request,
@@ -19,6 +24,7 @@ def application_list(request):
             "total_applications": total_applications,
             "interview_count": interview_count,
             "offer_count": offer_count,
+            "status_filter": status_filter,
         },
     )
 

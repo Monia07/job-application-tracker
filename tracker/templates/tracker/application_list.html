@@ -12,37 +12,67 @@
 </div>
 
 <div class="row g-3 mb-4">
+  <!-- TOTAL -->
   <div class="col-md-4">
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        <h6 class="text-muted mb-2">Total Applications</h6>
-        <h3 class="mb-0">{{ total_applications }}</h3>
+    <a
+      href="{% url 'application_list' %}"
+      class="text-decoration-none text-dark"
+    >
+      <div
+        class="card shadow-sm border-0 h-100 dashboard-card border-start border-4 border-dark"
+      >
+        <div class="card-body">
+          <h6 class="text-muted mb-2">Total Applications</h6>
+          <h3 class="mb-0 text-dark">{{ total_applications }}</h3>
+        </div>
       </div>
-    </div>
+    </a>
   </div>
 
+  <!-- INTERVIEWS -->
   <div class="col-md-4">
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        <h6 class="text-muted mb-2">Interviews</h6>
-        <h3 class="mb-0">{{ interview_count }}</h3>
+    <a
+      href="{% url 'application_list' %}?status=interview"
+      class="text-decoration-none text-dark"
+    >
+      <div
+        class="card shadow-sm border-0 h-100 dashboard-card border-start border-4 border-info"
+      >
+        <div class="card-body">
+          <h6 class="text-muted mb-2">Interviews</h6>
+          <h3 class="mb-0 text-info">{{ interview_count }}</h3>
+        </div>
       </div>
-    </div>
+    </a>
   </div>
 
+  <!-- OFFERS -->
   <div class="col-md-4">
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        <h6 class="text-muted mb-2">Offers</h6>
-        <h3 class="mb-0">{{ offer_count }}</h3>
+    <a
+      href="{% url 'application_list' %}?status=offer"
+      class="text-decoration-none text-dark"
+    >
+      <div
+        class="card shadow-sm border-0 h-100 dashboard-card border-start border-4 border-success"
+      >
+        <div class="card-body">
+          <h6 class="text-muted mb-2">Offers</h6>
+          <h3 class="mb-0 text-success">{{ offer_count }}</h3>
+        </div>
       </div>
-    </div>
+    </a>
   </div>
 </div>
 
 <div class="card shadow-sm border-0">
   <div class="card-body">
-    {% if applications %}
+    {% if status_filter == "interview" %}
+    <h5 class="mb-3">Showing: Interview Applications</h5>
+    {% elif status_filter == "offer" %}
+    <h5 class="mb-3">Showing: Offer Applications</h5>
+    {% else %}
+    <h5 class="mb-3">Showing: All Applications</h5>
+    {% endif %} {% if applications %}
     <div class="table-responsive">
       <table class="table table-striped table-hover align-middle mb-0">
         <thead>
@@ -97,7 +127,7 @@
       </table>
     </div>
     {% else %}
-    <p class="mb-0">No job applications found.</p>
+    <p class="mb-0">No job applications found for this filter.</p>
     {% endif %}
   </div>
 </div>

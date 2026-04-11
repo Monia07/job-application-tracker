@@ -67,3 +67,13 @@ form label {
 .alert {
   border-radius: 0.75rem;
 }
+
+.dashboard-card {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
