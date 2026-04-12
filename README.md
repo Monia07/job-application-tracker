@@ -221,6 +221,7 @@ flowchart TD
     D --> A
     E --> A
     F --> A
+    ```
 
 This reflects the final multi-page web structure more accurately than the original CLI flow.
 
