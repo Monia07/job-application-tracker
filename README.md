@@ -211,21 +211,20 @@ Custom CSS was still used for application-specific styling and refinement.
 
 ````mermaid
 flowchart TD
-    A[Dashboard / Application List] --> B[New Application]
-    A --> C[Edit Application]
-    A --> D[Delete Confirmation]
-    A --> E[Interview Filter]
-    A --> F[Offer Filter]
+    A["Dashboard / Application List"] --> B["New Application"]
+    A --> C["Edit Application"]
+    A --> D["Delete Confirmation"]
+    A --> E["Interview Filter"]
+    A --> F["Offer Filter"]
     B --> A
     C --> A
     D --> A
     E --> A
     F --> A
     ```
+    This reflects the final multi-page web structure more accurately than the original CLI flow.
 
-This reflects the final multi-page web structure more accurately than the original CLI flow.
-
----
+    ---
 
 ## Features
 
