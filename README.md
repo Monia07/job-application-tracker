@@ -258,6 +258,60 @@ These cards were enhanced with:
 
 ---
 
+## Screenshots
+
+### Dashboard Overview
+
+![Dashboard](assets/images/dashboard-overview.png)
+
+The dashboard provides an overview of all job applications, including key statistics such as total applications, interviews and offers. It also displays all records in a structured table with edit and delete actions.
+
+---
+
+### Add Application Form
+
+![Add Application Form](assets/images/add-application-form.png)
+
+The user can add a new job application using a structured form with clearly labelled fields, allowing efficient data entry.
+
+---
+
+### Validation Errors (Top)
+
+![Validation Top](assets/images/validation-errors-top.png)
+
+---
+
+### Validation Errors (Bottom)
+
+![Validation Bottom](assets/images/validation-errors-bottom.png)
+
+Validation prevents incorrect data from being submitted. Required fields, invalid inputs and formatting errors are clearly highlighted, ensuring data integrity and improving user experience.
+
+---
+
+### Edit Application (Top)
+
+![Edit Top](assets/images/edit-form-top.png)
+
+---
+
+### Edit Application (Bottom)
+
+![Edit Bottom](assets/images/edit-form-bottom.png)
+
+The user can update existing applications. Fields are pre-populated with existing data, allowing quick and efficient editing.
+
+---
+
+### Delete Confirmation
+
+![Delete Confirmation](assets/images/delete-confirmation.png)
+
+A confirmation page ensures that users do not accidentally delete records, improving usability and preventing data loss.
+
+---
+
 ## CRUD Functionality
 
 ### Create
