@@ -288,6 +288,20 @@ The user can add a new job application using a structured form with clearly labe
 
 Validation prevents incorrect data from being submitted. Required fields, invalid inputs and formatting errors are clearly highlighted, ensuring data integrity and improving user experience.
 
+### Optional Fields
+
+Certain fields such as **deadline** and **follow-up date** are intentionally optional.
+
+This design decision was made to reflect real-world usage, where a user may not yet have this information at the time of creating an application.
+
+By allowing these fields to remain empty:
+
+- the user experience becomes more flexible
+- the application avoids unnecessary friction
+- users can update the information later through the edit functionality
+
+This demonstrates consideration of real-world user behaviour and supports a more user-friendly design.
+
 ---
 
 ### Edit Application (Top)
