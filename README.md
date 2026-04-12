@@ -2,324 +2,744 @@
 
 ## Live Project
 
-The live version of this project is deployed on Heroku and is executed as a one-off dyno via the Heroku CLI.
-
-Because this is a pure CLI application without a web-based terminal wrapper, the application is designed to be run through the Heroku CLI rather than a browser.
-
-To run the application:
-
-1. Open your local terminal.
-2. Log in to Heroku: `heroku login`
-3. Run the following command:
-   ```bash
-   heroku run python run.py -a job-tracker-monia
-   ```
-
-## Introduction
-
-Job Application Tracker is a Python command-line application designed to help users organise and manage job applications efficiently.
-
-The project is based on a real-world need. As I am approaching the end of my studies at Code Institute, I will soon begin applying for roles within full-stack development. This will likely involve managing multiple applications at once, making it difficult to track progress, deadlines, and follow-ups manually.
-
-This application provides a structured and practical solution by allowing users to store and manage job application data in one place through a simple command-line interface.---
-
-## User Goals
-
-- As a job seeker, I want to easily keep track of all my job applications in one place so I can maintain a clear overview of my progress.
-- As a user, I want to be able to add, update, and remove applications so that my data always stays accurate and relevant.
-- As a user, I want to search through my applications to quickly find specific roles or companies when needed.
-- As a user, I want to monitor deadlines and follow-up dates so I can stay organised and not miss important opportunities.
-- As a user, I want to store additional details such as notes and job links so I have all relevant information available in one system.---
-
-## Developer Goals
-
-- Build a structured CLI application using Python.
-- Implement full CRUD functionality.
-- Apply validation and defensive programming.
-- Maintain clean and readable code.
-- Demonstrate understanding of data modelling and deployment.---
-
-## Rationale
-
-The development of this application was driven by a real and immediate need.
-
-As I approach the end of my studies at Code Institute, I will begin applying for roles within full-stack development. This process typically involves submitting multiple applications across different companies, each with its own deadlines, statuses, and follow-up requirements.
-
-Managing this information manually can quickly become inefficient and error-prone. Important details such as application deadlines, interview dates, or follow-up reminders can easily be overlooked.
-
-This project was designed to provide a structured and centralised way to manage that information in a clear and organised manner.
-
-The application allows users to store, update, and retrieve job application data in one place. By implementing CRUD functionality, users can track their progress, maintain relevant notes, and ensure that important actions such as follow-ups are not missed.
-
-A command-line interface (CLI) was chosen to focus on core programming principles such as data handling, logic flow, and validation, rather than interface design.
-
-JSON was used as the data storage method to enable simple and readable data handling while keeping the project focused on functionality.
-
-During development, I was aware that Heroku uses an ephemeral file system, meaning that locally stored JSON data does not persist after deployment restarts. The choice to continue with JSON was intentional to prioritise a stable and fully functional MVP.
-
-Future improvements such as PostgreSQL or Google Sheets API can be implemented to support persistent cloud storage.---
-
-## MS3 Design Approach
-
-This project follows the MS3 principle of focusing on backend logic rather than visual design.
-
-Instead of building a graphical user interface, a command-line interface (CLI) was used to:
-
-- Emphasise program logic and data flow
-- Handle user interaction through structured input and feedback
-- Focus on validation, error handling, and data manipulation
-
-This approach aligns with MS3 guidance, where the focus is on "how the logic works" rather than how the application looks.---
-
-## Development Decisions
-
-During the development of this project, several technical decisions were made based on the scope and goals of MS3.
-
-A command-line interface (CLI) was chosen instead of a graphical interface to prioritise backend logic, data handling, and program structure. This aligns with the MS3 focus on how the application works rather than how it looks.
-
-JSON was selected as the data storage solution due to its simplicity and ease of use for a single-user application. This allowed for quick implementation and clear data structure without introducing unnecessary complexity.
-
-However, it is recognised that JSON has limitations, particularly in a deployed environment such as Heroku where the file system is ephemeral. For a more scalable solution, a database such as PostgreSQL or an external service like Google Sheets API would be more appropriate.
-
-Input validation and error handling were prioritised to ensure the application remains stable under incorrect user input. This includes handling empty inputs, invalid formats, and incorrect menu selections.
-
-These decisions were made to balance simplicity, functionality, and alignment with the learning objectives of the project.---
-
-### Flowchart
-
-The flowchart was created using Mermaid.js to ensure that the project documentation is version-controlled and easily maintainable directly within the repository.
-
-```mermaid
-flowchart TD
-    A([Start]) --> B[Display Menu]
-    B --> C[User selects option]
-    C --> D{Valid input?}
-
-    D -- No --> E[Show error message]
-    E --> B
-
-    D -- Yes --> F{Choose action}
-
-    F --> G[View all applications]
-    G --> B
-
-    F --> H[Add application]
-    H --> I[Validate input]
-    I --> J[Save application]
-    J --> B
-
-    F --> K[Search applications]
-    K --> L[Display matching results]
-    L --> B
-
-    F --> M[Update status]
-    M --> N[Save updated status]
-    N --> B
-
-    F --> O[Add or edit notes]
-    O --> P[Save notes]
-    P --> B
-
-    F --> Q[Delete application]
-    Q --> R{Confirm delete?}
-    R -- Yes --> S[Delete application]
-    S --> B
-    R -- No --> B
-
-    F --> T[View deadlines]
-    T --> U[Show upcoming and expired deadlines]
-    U --> B
-
-    F --> V[View follow-ups]
-    V --> W[Show follow-ups due]
-    W --> B
-
-    F --> X[Export report]
-    X --> Y[Generate report.txt]
-    Y --> B
-
-    F --> Z[Exit]
-    Z --> AA([End])
-```
+**Live App:** https://jobtracker-app-2026-dc4be7460880.herokuapp.com/
 
 ---
 
-## Design
+## Introduction
 
-This section documents the logic and flow of the application and supports planning and structure.
+Job Application Tracker is a full-stack Django web application designed to help users organise and manage job applications in one central place.
 
-## Data Model
+The project is based on a real-world need. As I approach the end of my studies and begin applying for development roles, I need a reliable way to track applications, deadlines, follow-up dates, statuses and related links. Managing this manually becomes difficult when several applications are active at the same time.
 
-The application uses a structured data model for each job entry:
+This application provides a practical solution by allowing users to create, view, update and delete job application records through a clean browser-based interface. It also gives immediate feedback after user actions, validates input, and stores data in a structured relational database.
 
-- id
-- company_name
-- job_title
-- status
-- date_applied
-- deadline
-- contact_name
-- contact_email
+---
+
+## Evolution of the Project
+
+This project originally began as a Python CLI application.
+
+The CLI version focused on backend logic and data handling, but it had important limitations:
+
+- it was less user-friendly than a web application
+- it relied on a simpler storage approach
+- it was not ideal as a polished deployed product
+- it did not provide the type of visual feedback and interaction expected from a modern application
+
+Because of this, the project was developed further into a Django full-stack application.
+
+### Why the project was rebuilt as a web application
+
+The Django version allowed the project to become:
+
+- easier to use
+- visually structured
+- database-backed in a more scalable way
+- suitable for cloud deployment
+- closer to a real-world production workflow
+
+### What improved from the CLI version
+
+Compared with the original version, the final Django version now includes:
+
+- multi-page web interface
+- reusable templates
+- relational database structure
+- PostgreSQL in production
+- full CRUD in the browser
+- dashboard statistics
+- clickable dashboard cards
+- inline validation errors
+- Django success and error messages
+- deployment-ready settings and security improvements
+
+The Git history shows this transition clearly, from a command-line prototype to a fully deployed full-stack application.
+
+---
+
+## Project Rationale
+
+The aim of the project is to solve a realistic organisational problem for job seekers.
+
+A user may need to keep track of many applications at once, each with different:
+
+- companies
+- job titles
+- statuses
+- deadlines
+- follow-up dates
+- job links
 - notes
-- follow_up_date
-- job_link---
 
-## Technologies Used
+Without a system, important details can easily be missed.
 
-- Python 3
-- JSON
-- os (file handling)
-- datetime (date validation and comparison)---
+Job Application Tracker was therefore built to provide a simple but effective dashboard where users can:
 
-## Features
+- store relevant application records
+- update them as the application process changes
+- remove outdated applications
+- monitor progress through visible statistics
+- maintain a structured overview of their job search
 
-- View all applications
-- Add new application
-- Search applications
-- Update application status
-- Add and edit notes
-- Delete applications
-- View deadlines
-- View follow-ups
-- Export report---
+The final application has a clear purpose that is immediately evident to a new user from the dashboard and navigation.
 
-## Testing
+---
 
-### Manual Testing
+## User Goals
 
-| Feature | Input          | Expected Result  | Outcome |
-| ------- | -------------- | ---------------- | ------- |
-| Menu    | Invalid choice | Error message    | Pass    |
-| Add     | Empty input    | Validation error | Pass    |
-| Date    | Invalid date   | Error message    | Pass    |
-| Search  | Not found      | Message shown    | Pass    |
-| Delete  | Cancel         | No deletion      | Pass    |
-| ID      | Invalid ID     | Error handled    | Pass    |
+- As a job seeker, I want to manage all my job applications in one place.
+- As a user, I want to add new applications quickly and clearly.
+- As a user, I want to edit existing applications when statuses or details change.
+- As a user, I want to delete old or irrelevant applications.
+- As a user, I want a quick dashboard summary of my progress.
+- As a user, I want immediate feedback after performing actions.
+- As a user, I want clear error messages when something is entered incorrectly.
 
-### Testing Approach
+---
 
-Testing was carried out manually to simulate real user interaction.
+## Developer Goals
 
-The focus was on:
+- Build a database-backed Django application using Python.
+- Implement full CRUD functionality.
+- Use a structured relational data model.
+- Apply UX principles such as hierarchy, feedback, consistency and user control.
+- Use responsive layout and styling.
+- Deploy the project to Heroku with PostgreSQL.
+- Store secret keys securely using environment variables.
 
-- Ensuring all CRUD operations function correctly
-- Validating user input and preventing invalid data
-- Confirming that error messages are clear and helpful
-- Verifying that the application does not crash under invalid inputs
+---
 
-All identified issues were resolved, and the final application runs without known logic errors.
+## UX and Design
 
-### Edge Case Handling
+### Design Principles Applied
 
-The application was designed to handle a range of edge cases to ensure stability and reliability.
+The application was designed around key UX principles.
+
+#### Information hierarchy
+
+The most important data is shown first on the dashboard through summary cards:
+
+- Total Applications
+- Interviews
+- Offers
+
+This gives users an immediate overview before they look through the full table of records.
+
+#### Clear navigation
+
+The layout uses:
+
+- a top navigation bar
+- a sidebar navigation menu
+- a main content area
+
+The sidebar keeps the structure simple and the active state makes it clear where the user currently is.
+
+#### User control
+
+Users can freely perform key actions:
+
+- add an application
+- edit an application
+- delete an application
+- cancel actions
+- return to the dashboard
+
+The delete flow uses a separate confirmation page so the user stays in control and cannot accidentally remove data with a single click.
+
+#### Immediate feedback
+
+The application provides clear and immediate feedback through Django messages.
 
 Examples include:
 
-- Empty inputs are rejected and re-prompted
-- Incorrect data types are handled using validation checks
-- Invalid menu selections are caught and handled gracefully
-- Date validation ensures logical consistency (e.g. deadlines in the past are flagged)
-- Invalid IDs are handled without crashing the program
+- `Application added successfully.`
+- `Application updated successfully.`
+- `Application deleted successfully.`
+- `Please correct the errors below.`
+- `Enter a valid URL.`
+- `Enter a valid email address.`
+- `This field is required.`
 
-These measures ensure that the application does not break under unexpected user input.
+This helps the user understand what just happened and what to do next.
 
-### PEP8
+#### Consistency
 
-Code was validated using the CI Python Linter. Minor formatting issues such as line length, indentation, and trailing whitespace were identified and corrected.---
+Consistency is maintained across all pages through:
 
-## Application Screenshots
+- template inheritance with `base.html`
+- shared navigation
+- consistent cards and spacing
+- consistent button colours
+- consistent table styling
+- consistent form structure
+- consistent alert styling for success and errors
 
-### App Start (Main Menu)
+#### Accessibility and clarity
 
-![App Start](assets/images/app-start.png)
+The interface includes:
 
-### Add Application
+- visible labels for form fields
+- clear headings
+- structured layout
+- readable spacing
+- clear action buttons
+- error feedback near the relevant fields
 
-![Add Application](assets/images/app-add-application.png)
+The goal was to make the application understandable and usable without unnecessary friction.
 
-### Search Applications
+---
 
-![Search Applications](assets/images/app-search.png)
+## Why Bootstrap Was Used
 
-### Heroku CLI Test
+Bootstrap was chosen to support responsiveness, consistency and efficient development.
 
-![Heroku CLI](assets/images/heroku-cli-test.png)
+It was useful because it:
 
-### PEP8 Validation
+- made responsive layout easier
+- provided reliable grid and spacing utilities
+- supported consistent cards, alerts, buttons and tables
+- reduced time spent reinventing common UI components
+- allowed more time to focus on backend functionality and UX improvements
 
-![PEP8](assets/images/pep8.png)
+Custom CSS was still used for application-specific styling and refinement.
+
+---
+
+## Wireframe / Flow Structure
+
+````mermaid
+flowchart TD
+    A[Dashboard / Application List] --> B[New Application]
+    A --> C[Edit Application]
+    A --> D[Delete Confirmation]
+    A --> E[Interview Filter]
+    A --> F[Offer Filter]
+    B --> A
+    C --> A
+    D --> A
+    E --> A
+    F --> A
+
+This reflects the final multi-page web structure more accurately than the original CLI flow.
+
+---
+
+## Features
+
+## Dashboard
+
+The dashboard is the main page of the application and includes:
+
+- page heading and explanatory text
+- primary action button: **New Application**
+- three statistics cards:
+  - Total Applications
+  - Interviews
+  - Offers
+- table view of all application records
+- action buttons for Edit and Delete
+
+### Clickable dashboard cards
+
+The dashboard cards are interactive and filter the data displayed in the table:
+
+- **Total Applications** shows all applications
+- **Interviews** shows only interview applications
+- **Offers** shows only offer applications
+
+These cards were enhanced with:
+
+- hover effects
+- colour indicators
+- clearer visual affordance so users understand they are clickable
+
+---
+
+## CRUD Functionality
+
+### Create
+
+Users can add a new job application through a form.
+
+### Read
+
+Users can view all records on the main dashboard in a structured table.
+
+### Update
+
+Users can edit existing applications through a dedicated edit page.
+
+### Delete
+
+Users can remove applications through a delete confirmation page.
+
+### Immediate reflection in the UI
+
+All CRUD actions are immediately reflected in the interface.
+
+**Examples:**
+
+- added records appear in the list
+- edited values update instantly in the table
+- deleted records disappear from the list
+- dashboard statistics recalculate from the database
+
+This demonstrates that data actions are immediately reflected in the frontend, providing real-time feedback and improving the overall user experience.
+
+---
+
+## Templates
+
+The project uses Django templates correctly and consistently.
+
+### Main templates
+
+- `base.html`
+- `application_list.html`
+- `add_application.html`
+- `edit_application.html`
+- `delete_application.html`
+
+### Template usage
+
+`base.html` provides a reusable layout containing:
+
+- navbar
+- sidebar
+- message display area
+- shared layout styling
+
+The other templates extend the base template using Django template inheritance and define their own `{% block content %}` sections.
+
+This improves maintainability, consistency and readability.
+
+---
+
+## Data Model
+
+The application is built around one main model: `JobApplication`.
+
+### Fields currently used in the Django application
+
+- `company_name`
+- `job_title`
+- `status`
+- `date_applied`
+- `deadline`
+- `follow_up_date`
+- `contact_email`
+- `job_link`
+- `notes`
+
+### Data design rationale
+
+Each record represents one job application.
+
+This structure was chosen because it allows the user to record the most relevant data needed to manage the application lifecycle:
+
+- who the application is for
+- what role it is for
+- the application stage
+- important dates
+- contact information
+- supporting notes and links
+
+The structure is also suitable for future extension, such as search, user accounts, and more advanced filtering.
+
+---
+
+## Database Design
+
+### Development environment
+
+The local development version uses **SQLite**.
+
+### Production environment
+
+The deployed Heroku version uses **PostgreSQL**.
+
+### Why this approach was used
+
+This setup allows:
+
+- simple local development
+- more production-appropriate deployment
+- centralised configuration in `settings.py`
+- easy switching of the database backend through environment-based configuration
+
+---
+
+## Technologies Used
+
+### Backend
+
+- Python
+- Django
+
+### Frontend
+
+- HTML
+- CSS
+- Bootstrap
+
+### Database
+
+- SQLite for local development
+- PostgreSQL for deployed production
+
+### Deployment and infrastructure
+
+- Heroku
+- Gunicorn
+- WhiteNoise
+- dj-database-url
+
+---
+
+## Validation and Error Handling
+
+This project includes validation and defensive design at both UX and data-input level.
+
+### Form validation used
+
+Validation was tested and implemented for:
+
+- required fields
+- URL format
+- general invalid form submission
+- field-level feedback
+- top-level form feedback
+
+### Examples of validation behaviour
+
+#### Required fields
+
+If required fields are left empty, the user is not allowed to continue silently. The form displays:
+
+- a top-level message:
+  - `Please correct the errors below.`
+- field-specific errors below the affected inputs
+
+#### Invalid URL input
+
+If the user enters an invalid job link, Django validation prevents the form from saving and shows a clear field-level error under the relevant field.
+
+#### Invalid overall form state
+
+When a form fails validation, the app does not crash or redirect unexpectedly. Instead, the user remains on the same page and receives clear feedback.
+
+### Why this matters
+
+This improves the robustness of the application because:
+
+- invalid data is not saved
+- the user understands what is wrong
+- the interface stays stable
+- input errors are handled gracefully
+
+This approach improves the overall robustness of the application by ensuring that invalid data is prevented, errors are clearly communicated, and the user experience remains stable and predictable.
+
+---
+
+## User Feedback
+
+The application provides clear feedback for both successful and unsuccessful actions.
+
+### Success messages implemented
+
+After successful actions, the user sees a Bootstrap success alert such as:
+
+- `Application added successfully.`
+- `Application updated successfully.`
+- `Application deleted successfully.`
+
+### Error messages implemented
+
+When validation fails, the user sees:
+
+- top-level message:
+  - `Please correct the errors below.`
+- inline field-level error messages directly beneath the field that contains invalid input such as:
+  -`Enter a valid email address.`
+  -`Enter a valid URL.`
+  -`This field is required.`
+
+### UX purpose of feedback
+
+These messages were added to ensure that:
+
+- the user is always informed about completed actions
+- the user knows when an action failed
+- the user can identify the cause of the error quickly
+- the application feels responsive and trustworthy
+
+---
+
+## Test Data
+
+The deployed application includes example data to demonstrate functionality immediately.
+
+This improves the user experience by allowing first-time users to understand the application without needing to create data before interacting with it.
+
+This enables users to:
+
+- instantly view dashboard statistics
+- understand how data is structured and displayed
+- explore CRUD functionality without initial setup
+
+The user can still:
+
+- create new applications
+- edit existing applications
+- delete all applications if desired
+
+The example data reflects realistic job applications to simulate a real-world use case.
+
+---
+
+## Testing
+
+Testing was carried out manually during development and again after deployment.
+
+The testing process focused on:
+
+- CRUD functionality
+- validation
+- error handling
+- user feedback
+- dashboard logic
+- responsiveness
+- deployment consistency
+
+## Manual Testing Table
+
+| Area | Test | Action | Expected Result | Outcome |
+|------|------|--------|----------------|---------|
+| Create | Add valid record | Submit form with valid data | Record saves and appears in list | Pass |
+| Read | View dashboard | Open application list page | Existing data displays correctly | Pass |
+| Update | Edit record | Change data and submit | Edited values appear in list | Pass |
+| Delete | Delete record | Confirm deletion | Record is removed from list | Pass |
+| Dashboard stats | Dynamic totals | Add/edit/delete records | Stats update automatically | Pass |
+| Card filter | Interview card | Click interview card | Only interview records shown | Pass |
+| Card filter | Offer card | Click offer card | Only offer records shown | Pass |
+| Card filter | Total card | Click total applications | All records shown again | Pass |
+| Required fields | Empty required input | Submit incomplete form | Form rejected with clear error | Pass |
+| URL validation | Invalid job link | Submit incorrect URL | Inline error shown for field | Pass |
+| Error message | Invalid form | Submit form with invalid input | “Please correct the errors below” shown | Pass |
+| Success message | Valid create | Submit valid new application | Success alert shown | Pass |
+| Success message | Valid update | Update application | Success alert shown | Pass |
+| Success message | Valid delete | Delete application | Success alert shown | Pass |
+| Navigation | Sidebar links | Move between pages | No broken internal links | Pass |
+| Layout | Responsive behaviour | Resize window / different device widths | Layout remains usable and readable | Pass |
+| Deployment | Live app check | Open deployed Heroku app | Live version matches development version | Pass |
+| Internal stability | User actions | Navigate, submit, cancel, edit, delete | No internal errors or broken flow | Pass |
+
+## Validation-specific testing
+
+### Validation tests completed
+
+1. **Required field validation**
+   - left required fields empty
+   - confirmed that the form did not save
+   - confirmed that the page displayed a clear validation state
+
+2. **Invalid URL validation**
+   - entered an invalid job link
+   - confirmed that the record did not save
+   - confirmed that the user received visible field-level feedback
+
+3. **Error message visibility**
+   - confirmed that the user sees:
+     - general form error message
+     - specific field-level validation message
+
+4. **Success message visibility**
+   - confirmed that create, update and delete all produce obvious feedback messages
+
+5. **CRUD reflection**
+   - confirmed that all successful changes appear immediately in the UI and dashboard totals
+
+## Bugs found and fixed
+
+Examples of issues encountered and resolved during development:
+
+- **Django template syntax error**
+  - Cause: An unclosed template block caused a rendering error.
+  - Fix: The template structure was reviewed and the missing closing tag was added, restoring correct rendering.
+
+- **Duplicated Procfile**
+  - Cause: The Procfile was accidentally created in multiple locations, causing deployment confusion.
+  - Fix: The duplicate file was removed and a single Procfile was kept in the correct root directory.
+
+- **Dashboard cards showing static data**
+  - Cause: Hardcoded values were used instead of querying the database.
+  - Fix: The dashboard logic was updated to dynamically calculate values using Django ORM queries.
+
+- **Clickable dashboard cards not visually clear**
+  - Cause: No visual indication that the cards were interactive.
+  - Fix: Hover effects and styling were added to improve affordance and usability.
+
+- **Missing user feedback after CRUD actions**
+  - Cause: No confirmation was shown after create, update or delete actions.
+  - Fix: Django messages were implemented to provide clear success feedback.
+
+- **Weak form usability (no inline validation)**
+  - Cause: Validation errors were not clearly displayed next to fields.
+  - Fix: Inline field-level error messages were added to improve usability and clarity.
+
+- **Heroku configuration applied to wrong app**
+  - Cause: CLI commands were run without specifying the correct app.
+  - Fix: The correct app name was explicitly targeted using the `-a` flag.
+
+- **Deployment and database setup issues**
+  - Cause: Incorrect order of PostgreSQL setup and migrations.
+  - Fix: The correct deployment sequence was followed: add database → configure settings → run migrations.
+
+## Remaining bugs
+
+At the time of submission, no major functional bugs remain.
+
+---
+
+## Security Features
+
+The project includes key security practices appropriate to its scope.
+
+### Secret key management
+
+The application uses environment variables for production secrets.
+
+The repository does not store a real production `SECRET_KEY` in committed code.
+
+### Debug handling
+
+`DEBUG` is configured so that production can run with debug disabled.
+
+### Sensitive data
+
+Sensitive values are stored in environment variables / Heroku config vars rather than being committed directly to GitHub.
+
+---
 
 ## Deployment
 
-Deployed using Heroku.
+The final application was deployed to Heroku.
 
-### Deployment Steps
+### Deployment steps followed
 
-1. requirements.txt created using pip freeze
-2. Procfile created: `worker: python run.py`
-3. GitHub repository connected
-4. Heroku buildpack added
+1. A new Heroku application was created for the Django version.
+2. Required dependencies were installed.
+3. `requirements.txt` was generated and kept up to date.
+4. A `Procfile` was added in the project root:
+   ```text
+   web: gunicorn job_application_tracker.wsgi
 
-### Important Note
+5. `settings.py` was updated for:
+   - environment variables
+   - PostgreSQL in production
+   - static files with WhiteNoise
 
-Heroku uses an ephemeral file system, meaning data stored in JSON resets after application restarts. This limitation is acknowledged and considered in the project design.---
+6. A Heroku PostgreSQL add-on was created.
+7. `SECRET_KEY` was added as a Heroku config variable.
+8. The project was pushed to Heroku.
+9. Database migrations were run on Heroku.
+10. The deployed application was opened and tested.
+
+---
+
+## Deployment checks completed
+
+After deployment I checked that:
+
+- the app opened successfully
+- pages loaded correctly
+- CRUD still worked
+- validation still worked
+- dashboard statistics still updated correctly
+- the deployed version matched the local development version
+
+---
+
+## Code Quality and Readability
+
+The project was written with attention to clean code principles.
+
+This includes:
+
+- descriptive file names
+- consistent naming conventions
+- meaningful variable and function names
+- grouped file structure
+- consistent indentation
+- reusable templates
+- separate CSS file
+- Django framework conventions followed correctly
+
+The code was developed to remain readable, maintainable and easy to follow.
+
+---
 
 ## Version Control
 
-Git was used throughout development with frequent commits and clear, descriptive messages.---
+Git and GitHub were used throughout the development process.
 
-## Known Bugs & Fixes
+---
 
-- Search not showing results
-  Cause: Incorrect logic placement
-  Fix: Adjusted output block
+## Real-World Value
 
-- Delete not finding ID
-  Cause: ID comparison issue
-  Fix: Fixed ID matching logic
+This application addresses a realistic need for job seekers who need a reliable way to manage multiple active applications at once.
 
-- Notes not displaying
-  Cause: Missing in output
-  Fix: Added notes to display
+It provides value by offering:
 
-- Invalid job link accepted
-  Cause: Missing validation
-  Fix: Added validation and retry loop
+- a centralised application tracker
+- clear progress visibility
+- persistent cloud-based storage in production
+- quick editing and deletion
+- useful dashboard summaries
+- structured job-search organisation
 
-- Export showing outdated data
-  Cause: Data not refreshed
-  Fix: Reloaded data before export---
-
-## Limitations
-
-- Data resets on Heroku due to ephemeral file system
-- CLI interface limits visual presentation---
+---
 
 ## Future Improvements
 
-- PostgreSQL integration
-- Google Sheets API
-- Improved CLI UI (e.g. Rich library)---
+Possible future enhancements include:
+
+- authentication and user accounts
+- search functionality
+- more advanced filtering
+- reminders and notifications
+- multi-user support
+- richer analytics and reporting
+
+---
 
 ## Reflection
 
-During development, several challenges were encountered, particularly around input validation and maintaining consistent data structure.
+This project shows my progression from building a simple Python CLI application to designing, building and deploying a full-stack Django web application.
 
-One key learning outcome was the importance of validating user input to prevent the application from crashing. Implementing loops and validation checks improved the robustness of the program.
+The most important learning outcomes included:
 
-If this project were to be developed further, a more scalable data storage solution such as PostgreSQL would be used to overcome the limitations of JSON, especially in a deployed environment like Heroku.
+- understanding how backend and frontend work together in Django
+- building reusable templates and structured views
+- designing around user feedback and UX principles
+- validating input more effectively
+- configuring deployment with Heroku and PostgreSQL
+- improving security through environment variables
 
-This project helped strengthen understanding of program structure, data handling, and defensive programming.---
+The final application is significantly stronger than the original CLI prototype. It is more user-friendly, more scalable, and much closer to the standard expected of a publishable real-world application.
+
+---
 
 ## Credits
 
-Code Institute
-Python Documentation---
+- Code Institute course materials and guidance:
+- Heroku Documentation
+- Code Institute walkthrough project
+- Django Documentation
+- Bootstrap
 
-## Author
 
-Monia
-
-```
-
-```
+---
+````
