@@ -209,7 +209,7 @@ Custom CSS was still used for application-specific styling and refinement.
 
 ## Wireframe / Flow Structure
 
-````mermaid
+```mermaid
 flowchart TD
     A["Dashboard / Application List"] --> B["New Application"]
     A --> C["Edit Application"]
@@ -221,10 +221,11 @@ flowchart TD
     D --> A
     E --> A
     F --> A
-    ```
-    This reflects the final multi-page web structure more accurately than the original CLI flow.
+```
 
-    ---
+This reflects the final multi-page web structure more accurately than the original CLI flow.
+
+---
 
 ## Features
 
@@ -461,10 +462,7 @@ When validation fails, the user sees:
 
 - top-level message:
   - `Please correct the errors below.`
-- inline field-level error messages directly beneath the field that contains invalid input such as:
-  -`Enter a valid email address.`
-  -`Enter a valid URL.`
-  -`This field is required.`
+- inline field-level error messages directly beneath the field that contains invalid input such as: -`Enter a valid email address.` -`Enter a valid URL.` -`This field is required.`
 
 ### UX purpose of feedback
 
@@ -515,26 +513,26 @@ The testing process focused on:
 
 ## Manual Testing Table
 
-| Area | Test | Action | Expected Result | Outcome |
-|------|------|--------|----------------|---------|
-| Create | Add valid record | Submit form with valid data | Record saves and appears in list | Pass |
-| Read | View dashboard | Open application list page | Existing data displays correctly | Pass |
-| Update | Edit record | Change data and submit | Edited values appear in list | Pass |
-| Delete | Delete record | Confirm deletion | Record is removed from list | Pass |
-| Dashboard stats | Dynamic totals | Add/edit/delete records | Stats update automatically | Pass |
-| Card filter | Interview card | Click interview card | Only interview records shown | Pass |
-| Card filter | Offer card | Click offer card | Only offer records shown | Pass |
-| Card filter | Total card | Click total applications | All records shown again | Pass |
-| Required fields | Empty required input | Submit incomplete form | Form rejected with clear error | Pass |
-| URL validation | Invalid job link | Submit incorrect URL | Inline error shown for field | Pass |
-| Error message | Invalid form | Submit form with invalid input | “Please correct the errors below” shown | Pass |
-| Success message | Valid create | Submit valid new application | Success alert shown | Pass |
-| Success message | Valid update | Update application | Success alert shown | Pass |
-| Success message | Valid delete | Delete application | Success alert shown | Pass |
-| Navigation | Sidebar links | Move between pages | No broken internal links | Pass |
-| Layout | Responsive behaviour | Resize window / different device widths | Layout remains usable and readable | Pass |
-| Deployment | Live app check | Open deployed Heroku app | Live version matches development version | Pass |
-| Internal stability | User actions | Navigate, submit, cancel, edit, delete | No internal errors or broken flow | Pass |
+| Area               | Test                 | Action                                  | Expected Result                          | Outcome |
+| ------------------ | -------------------- | --------------------------------------- | ---------------------------------------- | ------- |
+| Create             | Add valid record     | Submit form with valid data             | Record saves and appears in list         | Pass    |
+| Read               | View dashboard       | Open application list page              | Existing data displays correctly         | Pass    |
+| Update             | Edit record          | Change data and submit                  | Edited values appear in list             | Pass    |
+| Delete             | Delete record        | Confirm deletion                        | Record is removed from list              | Pass    |
+| Dashboard stats    | Dynamic totals       | Add/edit/delete records                 | Stats update automatically               | Pass    |
+| Card filter        | Interview card       | Click interview card                    | Only interview records shown             | Pass    |
+| Card filter        | Offer card           | Click offer card                        | Only offer records shown                 | Pass    |
+| Card filter        | Total card           | Click total applications                | All records shown again                  | Pass    |
+| Required fields    | Empty required input | Submit incomplete form                  | Form rejected with clear error           | Pass    |
+| URL validation     | Invalid job link     | Submit incorrect URL                    | Inline error shown for field             | Pass    |
+| Error message      | Invalid form         | Submit form with invalid input          | “Please correct the errors below” shown  | Pass    |
+| Success message    | Valid create         | Submit valid new application            | Success alert shown                      | Pass    |
+| Success message    | Valid update         | Update application                      | Success alert shown                      | Pass    |
+| Success message    | Valid delete         | Delete application                      | Success alert shown                      | Pass    |
+| Navigation         | Sidebar links        | Move between pages                      | No broken internal links                 | Pass    |
+| Layout             | Responsive behaviour | Resize window / different device widths | Layout remains usable and readable       | Pass    |
+| Deployment         | Live app check       | Open deployed Heroku app                | Live version matches development version | Pass    |
+| Internal stability | User actions         | Navigate, submit, cancel, edit, delete  | No internal errors or broken flow        | Pass    |
 
 ## Validation-specific testing
 
@@ -633,8 +631,11 @@ The final application was deployed to Heroku.
 2. Required dependencies were installed.
 3. `requirements.txt` was generated and kept up to date.
 4. A `Procfile` was added in the project root:
+
    ```text
    web: gunicorn job_application_tracker.wsgi
+
+   ```
 
 5. `settings.py` was updated for:
    - environment variables
@@ -740,6 +741,8 @@ The final application is significantly stronger than the original CLI prototype.
 - Django Documentation
 - Bootstrap
 
-
 ---
-````
+
+```
+
+```
