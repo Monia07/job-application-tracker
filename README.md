@@ -627,6 +627,24 @@ The testing process focused on:
 5. **CRUD reflection**
    - confirmed that all successful changes appear immediately in the UI and dashboard totals
 
+### Django Deployment Validation
+
+A Django deployment validation check was performed using:
+`python manage.py check --deploy `
+This check was carried out after the production configuration was updated.
+
+### Results
+
+The deployment check confirmed that the previously identified issue regarding DEBUG mode in production had been resolved.
+
+The command completed successfully and returned a number of additional Django security recommendations for future production hardening. These recommendations were reviewed and documented as part of the deployment validation process.
+
+### Validation Evidence
+
+Screenshot evidence of the deployment validation process is included below.
+
+![Django Deployment Check](assets/images/deployment-check.png)
+
 ## Bugs found and fixed
 
 Examples of issues encountered and resolved during development:
