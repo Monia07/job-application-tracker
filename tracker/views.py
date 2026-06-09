@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Q
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import JobApplicationForm
 from .models import JobApplication
@@ -99,4 +99,3 @@ def delete_application(request, pk):
         "tracker/delete_application.html",
         {"application": application},
     )
-
