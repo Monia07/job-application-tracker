@@ -25,10 +25,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'tracker',
+
     'allauth',
     'allauth.account',
 
-    'tracker',
+    
 ]
 
 
@@ -53,7 +55,7 @@ ROOT_URLCONF = 'job_application_tracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'tracker' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
