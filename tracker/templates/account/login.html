@@ -1,0 +1,32 @@
+{% extends "tracker/base.html" %} {% block content %}
+<div class="container py-5">
+  <div class="card shadow-sm mx-auto" style="max-width: 500px">
+    <div class="card-body p-5">
+      <h2 class="text-center mb-3">Sign In</h2>
+
+      <p class="text-muted text-center mb-4">
+        Sign in to manage your job applications.
+      </p>
+
+      <form method="post" action="{% url 'account_login' %}">
+        {% csrf_token %} {{ form.as_p }} {% if redirect_field_value %}
+        <input
+          type="hidden"
+          name="{{ redirect_field_name }}"
+          value="{{ redirect_field_value }}"
+        />
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary w-100 mt-3">
+          Sign In
+        </button>
+      </form>
+
+      <p class="text-center mt-4 mb-0">
+        No account yet?
+        <a href="{% url 'account_signup' %}">Create one here</a>.
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

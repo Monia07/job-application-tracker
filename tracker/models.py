@@ -1,5 +1,4 @@
-from django.db import models
-
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -12,6 +11,7 @@ class JobApplication(models.Model):
         ("withdrawn", "Withdrawn"),
     ]
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     company_name = models.CharField(max_length=100)
     job_title = models.CharField(max_length=100)
     status = models.CharField(

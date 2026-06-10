@@ -14,11 +14,33 @@
   <body>
     <nav class="navbar navbar-dark bg-dark px-3 shadow-sm">
       <span class="navbar-brand mb-0 h1">Job Tracker</span>
+
+      <div class="d-flex align-items-center gap-2 auth-nav">
+        {% if user.is_authenticated %}
+        <span class="text-light small">Signed in as {{ user.username }}</span>
+        <a
+          class="btn btn-outline-light btn-sm"
+          href="{% url 'account_logout' %}"
+        >
+          Sign Out
+        </a>
+        {% else %}
+        <a
+          class="btn btn-outline-light btn-sm"
+          href="{% url 'account_login' %}"
+        >
+          Sign In
+        </a>
+        <a class="btn btn-light btn-sm" href="{% url 'account_signup' %}">
+          Sign Up
+        </a>
+        {% endif %}
+      </div>
     </nav>
 
     <div class="container-fluid">
       <div class="row">
-        <aside class="col-md-2 bg-light sidebar py-4 min-vh-100 border-end">
+        <aside class="col-12 col-md-2 bg-light sidebar py-3 py-md-4 border-end">
           <ul class="nav flex-column px-2">
             <li class="nav-item mb-2">
               <a
@@ -28,6 +50,8 @@
                 Dashboard
               </a>
             </li>
+
+            {% if user.is_authenticated %}
             <li class="nav-item mb-2">
               <a
                 class="nav-link {% if request.resolver_match.url_name == 'add_application' %}active{% endif %}"
@@ -36,10 +60,11 @@
                 Add Application
               </a>
             </li>
+            {% endif %}
           </ul>
         </aside>
 
-        <main class="col-md-10 p-4">
+        <main class="col-12 col-md-10 p-3 p-md-4">
           {% if messages %}
           <div class="mb-4">
             {% for message in messages %}
@@ -57,7 +82,7 @@
             </div>
             {% endfor %}
           </div>
-          {% endif %} {% block content %} {% endblock %}
+          {% endif %} {% block content %}{% endblock %}
         </main>
       </div>
     </div>

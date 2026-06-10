@@ -1,5 +1,6 @@
 body {
   background-color: #f8f9fa;
+  overflow-x: hidden;
 }
 
 .sidebar {
@@ -76,4 +77,107 @@ form label {
 .dashboard-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* --------------------------
+   AUTH PAGES
+--------------------------- */
+
+.auth-card {
+  max-width: 550px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.08);
+}
+
+.auth-card h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.auth-card p {
+  text-align: center;
+}
+
+.auth-card button,
+.auth-card .btn {
+  width: 100%;
+}
+
+/* --------------------------
+   MOBILE RESPONSIVE
+--------------------------- */
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  aside {
+    width: 100%;
+    border-right: none !important;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  main {
+    width: 100%;
+    padding: 1rem !important;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .navbar .navbar-brand {
+    font-size: 1.1rem;
+  }
+
+  .table-responsive {
+    width: 100%;
+  }
+
+  .dashboard-card {
+    margin-bottom: 0.5rem;
+  }
+
+  .auth-card {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid,
+  .row,
+  aside,
+  main {
+    max-width: 100%;
+  }
+
+  main {
+    flex: 0 0 100%;
+  }
+
+  aside {
+    flex: 0 0 100%;
+  }
+
+  .table {
+    min-width: 700px;
+  }
 }
