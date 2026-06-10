@@ -211,16 +211,20 @@ Custom CSS was still used for application-specific styling and refinement.
 
 ```mermaid
 flowchart TD
-    A["Dashboard / Application List"] --> B["New Application"]
-    A --> C["Edit Application"]
-    A --> D["Delete Confirmation"]
-    A --> E["Interview Filter"]
-    A --> F["Offer Filter"]
-    B --> A
-    C --> A
-    D --> A
-    E --> A
-    F --> A
+    A["Sign In"] --> B["Dashboard / Application List"]
+    Z["Sign Up"] --> B
+
+    B --> C["New Application"]
+    B --> D["Edit Application"]
+    B --> E["Delete Confirmation"]
+    B --> F["Interview Filter"]
+    B --> G["Offer Filter"]
+
+    C --> B
+    D --> B
+    E --> B
+    F --> B
+    G --> B
 ```
 
 This reflects the final multi-page web structure more accurately than the original CLI flow.
@@ -283,6 +287,22 @@ This demonstrates defensive design principles and improves both security and pri
 ---
 
 ## Screenshots
+
+### Sign In
+
+![Sign In](assets/images/signin-page.png)
+
+Users can securely sign in to access and manage their own job applications.
+
+---
+
+### Sign Up
+
+![Sign Up](assets/images/signup-page.png)
+
+New users can create an account before accessing the application and managing their job applications.
+
+---
 
 ### Dashboard Overview
 
@@ -440,7 +460,7 @@ This structure was chosen because it allows the user to record the most relevant
 - contact information
 - supporting notes and links
 
-The structure is also suitable for future extension, such as search, user accounts, and more advanced filtering.
+The structure is also suitable for future extension, such as search functionality, notifications and more advanced filtering.
 
 ---
 
@@ -582,23 +602,18 @@ These messages were added to ensure that:
 
 ## Test Data
 
-The deployed application includes example data to demonstrate functionality immediately.
+Users can create their own test accounts and add sample job application records to explore the functionality of the application.
 
-This improves the user experience by allowing first-time users to understand the application without needing to create data before interacting with it.
+During development and testing, realistic sample data was used to verify:
 
-This enables users to:
+- CRUD operations
+- dashboard statistics
+- filtering behaviour
+- form validation
+- authentication
+- user-specific application ownership
 
-- instantly view dashboard statistics
-- understand how data is structured and displayed
-- explore CRUD functionality without initial setup
-
-The user can still:
-
-- create new applications
-- edit existing applications
-- delete all applications if desired
-
-The example data reflects realistic job applications to simulate a real-world use case.
+This approach ensures that the application can be tested without relying on shared public records. Each authenticated user manages their own application data.
 
 ---
 
@@ -680,6 +695,20 @@ This check was carried out after the production configuration was updated.
 The deployment check confirmed that the previously identified issue regarding DEBUG mode in production had been resolved.
 
 The command completed successfully and returned a number of additional Django security recommendations for future production hardening. These recommendations were reviewed and documented as part of the deployment validation process.
+
+### Security Warnings Review
+
+The deployment check identified several Django security recommendations related to production hardening, including:
+
+- HSTS configuration
+- SSL redirection
+- secure session cookies
+- secure CSRF cookies
+- secret key strength
+
+These warnings were reviewed as part of the deployment validation process.
+
+For the scope of this project, the application was configured with environment-based secrets and production debug disabled. The remaining warnings represent additional production-hardening measures that could be implemented in a future iteration of the project.
 
 ### Validation Evidence
 
