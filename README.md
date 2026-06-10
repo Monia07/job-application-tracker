@@ -258,6 +258,30 @@ These cards were enhanced with:
 
 ---
 
+## Authentication and Access Control
+
+The application uses Django Allauth to provide secure user authentication and account management.
+
+Users can:
+
+- create an account
+- sign in
+- sign out
+- manage only their own job applications
+
+Each JobApplication record is linked to the authenticated user.
+
+Access control is enforced throughout the application:
+
+- users can only view their own applications
+- users can only edit their own applications
+- users can only delete their own applications
+- unauthenticated users are redirected to the login page when attempting protected actions
+
+This demonstrates defensive design principles and improves both security and privacy.
+
+---
+
 ## Screenshots
 
 ### Dashboard Overview
@@ -392,6 +416,7 @@ The application is built around one main model: `JobApplication`.
 
 ### Fields currently used in the Django application
 
+- `user`
 - `company_name`
 - `job_title`
 - `status`
@@ -480,6 +505,7 @@ Validation was tested and implemented for:
 - general invalid form submission
 - field-level feedback
 - top-level form feedback
+- future application date validation
 
 ### Examples of validation behaviour
 
@@ -498,6 +524,17 @@ If the user enters an invalid job link, Django validation prevents the form from
 #### Invalid overall form state
 
 When a form fails validation, the app does not crash or redirect unexpectedly. Instead, the user remains on the same page and receives clear feedback.
+
+#### Future application date validation
+
+The Date Applied field prevents users from selecting a future date.
+
+Validation is implemented at two levels:
+
+- browser-level validation using the HTML date picker
+- server-side validation within the Django form
+
+This ensures that invalid future application dates cannot be stored in the database.
 
 ### Why this matters
 
@@ -581,26 +618,31 @@ The testing process focused on:
 
 ## Manual Testing Table
 
-| Area               | Test                 | Action                                  | Expected Result                          | Outcome |
-| ------------------ | -------------------- | --------------------------------------- | ---------------------------------------- | ------- |
-| Create             | Add valid record     | Submit form with valid data             | Record saves and appears in list         | Pass    |
-| Read               | View dashboard       | Open application list page              | Existing data displays correctly         | Pass    |
-| Update             | Edit record          | Change data and submit                  | Edited values appear in list             | Pass    |
-| Delete             | Delete record        | Confirm deletion                        | Record is removed from list              | Pass    |
-| Dashboard stats    | Dynamic totals       | Add/edit/delete records                 | Stats update automatically               | Pass    |
-| Card filter        | Interview card       | Click interview card                    | Only interview records shown             | Pass    |
-| Card filter        | Offer card           | Click offer card                        | Only offer records shown                 | Pass    |
-| Card filter        | Total card           | Click total applications                | All records shown again                  | Pass    |
-| Required fields    | Empty required input | Submit incomplete form                  | Form rejected with clear error           | Pass    |
-| URL validation     | Invalid job link     | Submit incorrect URL                    | Inline error shown for field             | Pass    |
-| Error message      | Invalid form         | Submit form with invalid input          | “Please correct the errors below” shown  | Pass    |
-| Success message    | Valid create         | Submit valid new application            | Success alert shown                      | Pass    |
-| Success message    | Valid update         | Update application                      | Success alert shown                      | Pass    |
-| Success message    | Valid delete         | Delete application                      | Success alert shown                      | Pass    |
-| Navigation         | Sidebar links        | Move between pages                      | No broken internal links                 | Pass    |
-| Layout             | Responsive behaviour | Resize window / different device widths | Layout remains usable and readable       | Pass    |
-| Deployment         | Live app check       | Open deployed Heroku app                | Live version matches development version | Pass    |
-| Internal stability | User actions         | Navigate, submit, cancel, edit, delete  | No internal errors or broken flow        | Pass    |
+| Area               | Test                   | Action                                  | Expected Result                          | Outcome |
+| ------------------ | ---------------------- | --------------------------------------- | ---------------------------------------- | ------- |
+| Create             | Add valid record       | Submit form with valid data             | Record saves and appears in list         | Pass    |
+| Read               | View dashboard         | Open application list page              | Existing data displays correctly         | Pass    |
+| Update             | Edit record            | Change data and submit                  | Edited values appear in list             | Pass    |
+| Delete             | Delete record          | Confirm deletion                        | Record is removed from list              | Pass    |
+| Dashboard stats    | Dynamic totals         | Add/edit/delete records                 | Stats update automatically               | Pass    |
+| Card filter        | Interview card         | Click interview card                    | Only interview records shown             | Pass    |
+| Card filter        | Offer card             | Click offer card                        | Only offer records shown                 | Pass    |
+| Card filter        | Total card             | Click total applications                | All records shown again                  | Pass    |
+| Required fields    | Empty required input   | Submit incomplete form                  | Form rejected with clear error           | Pass    |
+| URL validation     | Invalid job link       | Submit incorrect URL                    | Inline error shown for field             | Pass    |
+| Error message      | Invalid form           | Submit form with invalid input          | “Please correct the errors below” shown  | Pass    |
+| Success message    | Valid create           | Submit valid new application            | Success alert shown                      | Pass    |
+| Success message    | Valid update           | Update application                      | Success alert shown                      | Pass    |
+| Success message    | Valid delete           | Delete application                      | Success alert shown                      | Pass    |
+| Navigation         | Sidebar links          | Move between pages                      | No broken internal links                 | Pass    |
+| Layout             | Responsive behaviour   | Resize window / different device widths | Layout remains usable and readable       | Pass    |
+| Deployment         | Live app check         | Open deployed Heroku app                | Live version matches development version | Pass    |
+| Internal stability | User actions           | Navigate, submit, cancel, edit, delete  | No internal errors or broken flow        | Pass    |
+| Authentication     | User registration      | Create new account                      | Account created successfully             | Pass    |
+| Authentication     | User login             | Sign in with valid credentials          | User gains access                        | Pass    |
+| Authentication     | User logout            | Sign out                                | User session ends                        | Pass    |
+| Access control     | User ownership         | Log in as different users               | Users only see their own applications    | Pass    |
+| Validation         | Future date validation | Select future Date Applied              | Form prevents submission                 | Pass    |
 
 ## Validation-specific testing
 
@@ -681,6 +723,14 @@ Examples of issues encountered and resolved during development:
   - Cause: Incorrect order of PostgreSQL setup and migrations.
   - Fix: The correct deployment sequence was followed: add database → configure settings → run migrations.
 
+  - **Missing authentication and access control**
+  - Cause: All users could access and modify the same records.
+  - Fix: Django Allauth authentication was implemented and each application was linked to an authenticated user.
+
+- **Future application dates allowed**
+  - Cause: Users could select dates that had not yet occurred.
+  - Fix: Browser-level and server-side validation were added to prevent future application dates.
+
 ## Remaining bugs
 
 At the time of submission, no major functional bugs remain.
@@ -733,6 +783,76 @@ The final application was deployed to Heroku.
 8. The project was pushed to Heroku.
 9. Database migrations were run on Heroku.
 10. The deployed application was opened and tested.
+
+### Local Development Setup
+
+A developer can run this project locally by following these steps:
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/Monia07/job-application-tracker.git
+```
+
+2. Navigate into the project directory:
+
+```bash
+cd YOUR-REPOSITORY-NAME
+```
+
+3. Create and activate a virtual environment:
+
+```bash
+python -m venv venv
+```
+
+Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+Mac/Linux:
+
+```bash
+source venv/bin/activate
+```
+
+4. Install project dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+5. Configure environment variables:
+
+Create a `.env` file (or configure environment variables) and add:
+
+```text
+SECRET_KEY=your-secret-key
+DEBUG=True
+```
+
+6. Run database migrations:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+7. Start the development server:
+
+```bash
+python manage.py runserver
+```
+
+8. Open the application in a browser:
+
+```text
+http://127.0.0.1:8000
+```
+
+The application should now be running locally.
 
 ---
 
@@ -793,12 +913,12 @@ It provides value by offering:
 
 Possible future enhancements include:
 
-- authentication and user accounts
 - search functionality
 - more advanced filtering
 - reminders and notifications
-- multi-user support
 - richer analytics and reporting
+- file attachments for applications
+- export functionality (CSV/PDF)
 
 ---
 
