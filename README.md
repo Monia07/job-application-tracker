@@ -284,6 +284,14 @@ Access control is enforced throughout the application:
 
 This demonstrates defensive design principles and improves both security and privacy.
 
+### Access Control Error Handling
+
+If a user manually tries to access another user's edit or delete URL, the application displays a clear error message and redirects them back to their own dashboard instead of showing a broken 404 page.
+
+![Permission Edit Error](assets/images/permission-edit-error.png)
+
+![Permission Delete Error](assets/images/permission-delete-error.png)
+
 ---
 
 ## Screenshots
