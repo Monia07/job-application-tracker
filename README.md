@@ -975,6 +975,7 @@ The final application is significantly stronger than the original CLI prototype.
 - Code Institute walkthrough project
 - Django Documentation
 - Bootstrap
+- Mentor support and project guidance from Tim Nelson at Code Institute
 
 ---
 
