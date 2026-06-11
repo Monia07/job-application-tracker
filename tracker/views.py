@@ -58,11 +58,14 @@ def add_application(request):
 
 @login_required
 def edit_application(request, pk):
-    application = get_object_or_404(
-        JobApplication,
-        pk=pk,
-        user=request.user,
-    )
+    application = get_object_or_404(JobApplication, pk=pk)
+
+    if application.user != request.user:
+        messages.error(
+            request,
+            "You do not have permission to edit this application.",
+        )
+        return redirect("application_list")
 
     if request.method == "POST":
         form = JobApplicationForm(request.POST, instance=application)
@@ -83,11 +86,14 @@ def edit_application(request, pk):
 
 @login_required
 def delete_application(request, pk):
-    application = get_object_or_404(
-        JobApplication,
-        pk=pk,
-        user=request.user,
-    )
+    application = get_object_or_404(JobApplication, pk=pk)
+
+    if application.user != request.user:
+        messages.error(
+            request,
+            "You do not have permission to delete this application.",
+        )
+        return redirect("application_list")
 
     if request.method == "POST":
         application.delete()
@@ -99,3 +105,4 @@ def delete_application(request, pk):
         "tracker/delete_application.html",
         {"application": application},
     )
+
